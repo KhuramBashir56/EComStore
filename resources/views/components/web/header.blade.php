@@ -21,10 +21,10 @@
                         </div>
                     </label>
                     @auth
-                        <a href="" class="inline-block px-3 py-1 hover:bg-secondary-700 dark:hover:bg-gray-700 transition-colors duration-500">Dashboard</a>
+                        <a href="{{ route('dashboard') }}" class="inline-block px-3 py-1 hover:bg-secondary-700 dark:hover:bg-gray-700 transition-colors duration-500">Dashboard</a>
                     @else
-                        <a href="" class="inline-block px-3 py-1 hover:bg-secondary-700 dark:hover:bg-gray-700 transition-colors duration-500">Login</a>
-                        <a href="" class="inline-block px-3 py-1 hover:bg-secondary-700 dark:hover:bg-gray-700 transition-colors duration-500">Register</a>
+                        <a wire:navigate href="{{ route('login') }}" class="inline-block px-3 py-1 hover:bg-secondary-700 dark:hover:bg-gray-700 transition-colors duration-500">Login</a>
+                        <a wire:navigate href="{{ route('register') }}" class="inline-block px-3 py-1 hover:bg-secondary-700 dark:hover:bg-gray-700 transition-colors duration-500">Register</a>
                     @endauth
                 </div>
             </div>
@@ -34,7 +34,7 @@
         <div class="2xl:container mx-auto">
             <div class="grid md:grid-cols-4 xs:grid-cols-2  gap-4">
                 <div class="flex items-center xs:justify-start justify-center">
-                    <x-logo class="size-20" />
+                    <x-logo wire:navigate class="size-20" />
                 </div>
                 <div class="xs:col-span-2 flex items-center">
                     <livewire:web.components.search-box />

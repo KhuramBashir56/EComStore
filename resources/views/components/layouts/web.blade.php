@@ -4,9 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laravel</title>
-    <meta name="description" content="">
-    <meta name="keywords" content="">
+    <title>{{ request()->routeIs('home') ? config('app.name') : $title . ' - ' . config('app.name') }}</title>
+    <meta name="description" content="{{ $description ?? config('app.description') }}">
+    <meta name="keywords" content="{{ $keywords ?? config('app.keywords') }}">
     <x-layouts.meta-data />
     <style type="text/css">
         .page {

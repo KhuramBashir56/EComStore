@@ -10,9 +10,9 @@ class NewsLetter extends Component
 
     public function subscribe()
     {
-        // $this->validate([
-        //     'email' => ['required', 'email'],
-        // ]);
+        $this->validate([
+            'email' => ['required', 'email'],
+        ]);
         $this->dispatch('alert', type: 'success', message: 'Login Failed. Please try again with your correct credentials.');
     }
 

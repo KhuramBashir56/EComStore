@@ -10,11 +10,10 @@ class PaymentMethods extends Component
     {
         return <<<HTML
             <div class="flex flex-wrap gap-4 items-center md:justify-start justify-center">
-                <x-thumbnail alt="Payment Method" class="h-10 aspect-video" />
-                <x-thumbnail alt="Payment Method" class="h-10 aspect-video" />
-                <x-thumbnail alt="Payment Method" class="h-10 aspect-video" />
-                <x-thumbnail alt="Payment Method" class="h-10 aspect-video" />
-                <x-thumbnail alt="Payment Method" class="h-10 aspect-video" />
+                <div class="h-10 aspect-video bg-primary-700 dark:bg-gray-500 animate-pulse"></div>
+                <div class="h-10 aspect-video bg-primary-700 dark:bg-gray-500 animate-pulse"></div>
+                <div class="h-10 aspect-video bg-primary-700 dark:bg-gray-500 animate-pulse"></div>
+                <div class="h-10 aspect-video bg-primary-700 dark:bg-gray-500 animate-pulse"></div>
             </div>
         HTML;
     }
