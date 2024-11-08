@@ -14,4 +14,9 @@ class Role extends Model
     {
         return Self::where('slug', 'admin')->first();
     }
+
+    public static function buyer()
+    {
+        return Self::where('slug', 'buyer')->first();
+    }
 }

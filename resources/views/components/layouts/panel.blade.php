@@ -9,8 +9,12 @@
     <meta name="keywords" content="{{ $keywords ?? config('app.keywords') }}">
     <x-layouts.meta-data />
     <style type="text/css">
-        .page {
+        .panel_page {
             height: calc(100vh - 80px);
+        }
+
+        .mainMenu {
+            height: calc(100% - 26px);
         }
     </style>
     @stack('styles')
@@ -18,9 +22,14 @@
 
 <body>
     <x-panel.header />
-    <div class="bg-gray-200 dark:bg-gray-900 overflow-y-auto relative page">
-        {{ $slot }}
-    </div>
+    <section class="xl:flex items-start bg-gray-200 dark:bg-gray-900 relative panel_page">
+        <x-panel.menu-bar.index />
+        <main class="w-full h-full overflow-y-auto p-4 grid gap-4 place-content-start">
+            <h3 class="w-full font-medium text-2xl text-black dark:text-gray-200">{{ $title }}</h3>
+            {{ $slot }}
+        </main>
+        <x-alert-message />
+    </section>
     @stack('scripts')
 </body>
 

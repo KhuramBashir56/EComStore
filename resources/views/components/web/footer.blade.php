@@ -14,7 +14,7 @@
                     <div class="w-full divide-y divide-primary-200 dark:divide-gray-600">
                         <a wire:navigate href="{{ route('home') }}" class="flex items-center px-3 py-2 hover:bg-secondary-500 dark:hover:bg-gray-700 transition-colors duration-500">Home</a>
                         <a wire:navigate href="" class="flex items-center px-3 py-2 hover:bg-secondary-500 dark:hover:bg-gray-700 transition-colors duration-500">Products</a>
-                        <a wire:navigate href="" class="flex items-center px-3 py-2 hover:bg-secondary-500 dark:hover:bg-gray-700 transition-colors duration-500">Track Order</a>
+                        <a wire:navigate href="{{ route('order.tracking') }}" class="flex items-center px-3 py-2 hover:bg-secondary-500 dark:hover:bg-gray-700 transition-colors duration-500">Track Order</a>
                         <a wire:navigate href="" class="flex items-center px-3 py-2 hover:bg-secondary-500 dark:hover:bg-gray-700 transition-colors duration-500">About Us</a>
                         <a wire:navigate href="{{ route('contact') }}" class="flex items-center px-3 py-2 hover:bg-secondary-500 dark:hover:bg-gray-700 transition-colors duration-500">Contact Us</a>
                         <a wire:navigate href="" class="flex items-center px-3 py-2 hover:bg-secondary-500 dark:hover:bg-gray-700 transition-colors duration-500">FAQs</a>
@@ -101,7 +101,7 @@
     <section class="px-4">
         <div class="2xl:container mx-auto">
             <div class="flex flex-col justify-center items-center gap-4">
-                <p class="text-center text-sm">Copyright &copy; 2023 - {{ now()->format('y') }} All rights reserved by <a href="{{ route('home') }}" class="text-secondary-500 hover:underline">{{ config('app.name') }}</a> </p>
+                <p class="text-center text-sm">&copy; 2023 - {{ now()->format('y') }} All rights reserved by <a href="{{ route('home') }}" class="text-secondary-500 hover:underline">{{ config('app.name') }}</a> v:1.0 </p>
             </div>
         </div>
     </section>

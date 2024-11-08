@@ -19,11 +19,11 @@
     background: #070a6e;
 }
 
-#sidebar::-webkit-scrollbar {
+.mainMenu::-webkit-scrollbar {
     display: none;
 }
 
-#sidebar {
+.mainMenu {
     -ms-overflow-style: none;
     scrollbar-width: none;
 }

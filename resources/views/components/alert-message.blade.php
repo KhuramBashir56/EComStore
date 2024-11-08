@@ -27,12 +27,12 @@
                     alert.classList.add('bg-red-200', 'border-l-red-500');
                     icon_wrapper.classList.add('bg-red-500');
                     icon.innerHTML = 'close';
-                    alert_title.innerHTML = 'Error! Something Wrong';
+                    alert_title.innerHTML = 'Error!';
                 } else if (event.type == 'warning') {
                     alert.classList.add('bg-amber-200', 'border-l-amber-500');
                     icon_wrapper.classList.add('bg-amber-500');
                     icon.innerHTML = 'error';
-                    alert_title.innerHTML = 'Warning! Something Wrong';
+                    alert_title.innerHTML = 'Warning!';
                 }
 
                 alert.classList.remove('hidden');

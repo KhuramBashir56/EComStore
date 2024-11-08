@@ -13,6 +13,10 @@
             height: calc(100vh - 40.8px);
         }
 
+        .web_menu {
+            height: calc(100% - 48px);
+        }
+
         @media screen and (min-width: 640px) {
             .page {
                 height: 100vh;

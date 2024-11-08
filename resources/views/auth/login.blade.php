@@ -10,11 +10,14 @@
             <form method="POST" action="{{ route('login.store') }}">
                 @csrf
                 <x-ui.form.label :title="__('Email')" :for="__('email')">
-                    <x-ui.form.input :for="__('email')" type="email" value="{{ old('email') }}" maxlength="64" autofocus required autocomplete="username" placeholder="{{ __('Email Address') }}" class="rounded-md" />
+                    <x-ui.form.input type="email" :for="__('email')" value="{{ old('email') }}" maxlength="64" autofocus required autocomplete="username" placeholder="{{ __('Email Address') }}" class="rounded-md" />
                 </x-ui.form.label>
                 <x-ui.form.label :title="__('Password')" :for="__('password')">
                     <x-ui.form.input-password :for="__('password')" minlength="8" maxlength="64" required autocomplete="off" placeholder="{{ __('Password') }}" class="rounded-md" />
                 </x-ui.form.label>
+                <div class="block sm:col-span-2 text-end">
+                    <a wire:navigate href="{{ route('register') }}" class="text-secondary-500 hover:text-primary-600 dark:hover:text-secondary-600 hover:underline">{{ __('Forgot your password?') }}</a>
+                </div>
                 <div class="block mt-4 sm:col-span-2">
                     <x-ui.form.checkbox :box="__('default')" :title="__('Remember me')" :for="__('remember_me')" />
                 </div>

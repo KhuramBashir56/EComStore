@@ -1,13 +1,13 @@
-@props(['title', 'button'])
+@props(['title', 'link'])
 @php
     $color;
-    if ($button == 'default') {
+    if ($link == 'default') {
         $color = 'bg-primary-500 dark:bg-secondary-500 hover:bg-primary-700 dark:hover:bg-secondary-700';
-    } elseif ($button == 'red') {
+    } elseif ($link == 'red') {
         $color = 'bg-red-700 dark:bg-red-600 hover:bg-red-800 dark:hover:bg-red-700';
-    } elseif ($button == 'green') {
+    } elseif ($link == 'green') {
         $color = 'bg-green-700 dark:bg-green-600 hover:bg-green-800 dark:hover:bg-green-700';
-    } elseif ($button == 'blue') {
+    } elseif ($link == 'blue') {
         $color = 'bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700';
     }
 @endphp

@@ -22,9 +22,12 @@ class RegisteredUserController extends Controller
         $request->validate([
             'first_name' => ['required', 'string', 'max:22'],
             'last_name' => ['required', 'string', 'max:22'],
-            'phone' => ['required', 'string', 'min:11', 'max:11', 'unique:' . User::class],
+            'phone' => ['required', 'string', 'digits:11', 'regex:/^03\d{9}$/', 'unique:' . User::class],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'policy_accept' => ['accepted'],
+        ], [
+            'phone.regex' => 'Invalid phone number format please start 03xxxxxxxxx',
         ]);
         $user = new User;
         $user->ref_id = User::refId();

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Gate;
 
-class Dashboard extends Controller
+class DashboardController extends Controller
 {
     public function dashboard()
     {

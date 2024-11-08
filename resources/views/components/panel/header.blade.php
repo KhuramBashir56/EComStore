@@ -1,5 +1,5 @@
 <header class="p-4 text-white dark:text-gray-200 bg-secondary-500 dark:bg-gray-800 flex items-center gap-4 shadow-xl z-10 print:hidden">
-    <button onclick="menuRToggle()" class="sidebarToggle lg:hidden sm:flex hidden justify-center items-center p-3 hover:bg-secondary-700 dark:hover:bg-gray-700 transition-colors duration-500" title="Toggle Menu">
+    <button onclick="menuRToggle()" class="sidebarToggle xl:hidden flex justify-center items-center p-3 hover:bg-secondary-700 dark:hover:bg-gray-700 transition-colors duration-500" title="Toggle Menu">
         <span class="material-symbols-outlined">menu</span>
     </button>
     <div class="flex justify-center items-center gap-4">

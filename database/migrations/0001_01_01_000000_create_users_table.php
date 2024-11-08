@@ -51,6 +51,7 @@ return new class extends Migration
 
         Schema::create('user_addresses', function (Blueprint $table) {
             $table->id();
+            $table->string('ref_id', 20);
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->enum('type', ['home', 'office', 'shop', 'store']);
             $table->string('name', 48);
@@ -67,6 +68,7 @@ return new class extends Migration
 
         Schema::create('news_letter_subscribers', function (Blueprint $table) {
             $table->id();
+            $table->string('ref_id', 20);
             $table->foreignId('user_id')->nullable()->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('email', 48);
             $table->enum('status', ['subscribed', 'unsubscribed'])->default('subscribed');

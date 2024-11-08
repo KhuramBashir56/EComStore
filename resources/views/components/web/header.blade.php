@@ -39,7 +39,7 @@
                 <div class="xs:col-span-2 flex items-center">
                     <livewire:web.components.search-box />
                 </div>
-                <div class="md:col-start-4 xs:col-start-2 xs:row-start-1 xs:row-end-2 flex items-center justify-end">
+                <div class="md:col-start-4 xs:col-start-2 xs:row-start-1 xs:row-end-2 flex items-center xs:justify-end justify-center">
                     <button title="My Cart" class="flex justify-center items-center p-3 hover:bg-secondary-700 dark:hover:bg-gray-700 transition-colors duration-500 relative rounded-full">
                         <span class="material-symbols-outlined">shopping_cart</span>
                         <span class="absolute top-1 right-1 size-4 rounded-full bg-primary-500 text-white dark:bg-secondary-500 text-[11px] flex justify-center items-center">45</span>
@@ -47,6 +47,9 @@
                     <button title="Wishlist" class="flex justify-center items-center p-3 hover:bg-secondary-700 dark:hover:bg-gray-700 transition-colors duration-500 relative rounded-full">
                         <span class="material-symbols-outlined">favorite</span>
                         <span class="absolute top-1 right-1 size-4 rounded-full bg-primary-500 text-white dark:bg-secondary-500 text-[11px] flex justify-center items-center">45</span>
+                    </button>
+                    <button title="Wishlist" class="flex justify-center items-center p-3 hover:bg-secondary-700 dark:hover:bg-gray-700 transition-colors duration-500 rounded-full">
+                        <span class="material-symbols-outlined">account_circle</span>
                     </button>
                 </div>
             </div>
