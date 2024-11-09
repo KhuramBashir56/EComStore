@@ -24,8 +24,8 @@
     <x-panel.header />
     <section class="xl:flex items-start bg-gray-200 dark:bg-gray-900 relative panel_page">
         <x-panel.menu-bar.index />
-        <main class="w-full h-full overflow-y-auto p-4 grid gap-4 place-content-start">
-            <h3 class="w-full font-medium text-2xl text-black dark:text-gray-200">{{ $title }}</h3>
+        <main class="h-full w-full overflow-y-auto p-4 print:p-0 grid gap-4 content-start">
+            <h3 class="font-medium text-2xl text-black dark:text-gray-200 ">{{ $title }}</h3>
             {{ $slot }}
         </main>
         <x-alert-message />

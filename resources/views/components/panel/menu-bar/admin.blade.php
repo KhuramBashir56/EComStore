@@ -1,8 +1,9 @@
+<x-panel.menu-bar.menu-item href="{{ route('admin.dashboard') }}" :title="__('Dashboard')" :icon="__('dashboard')" :active="__('admin.dashboard')" />
 {{-- <x-panel.menu-bar.heading :title="__('Orders Management')" />
 <x-panel.menu-bar.menu-item href="{{ route('dashboard') }}" :title="__('Orders')" :icon="__('list_alt')" :active="__('bia')" />
 <x-panel.menu-bar.menu-item href="{{ route('dashboard') }}" :title="__('Order Tracking')" :icon="__('account_tree')" :active="__('bia')" /> --}}
 <x-panel.menu-bar.heading :title="__('Product Management')" />
-<x-panel.menu-bar.menu-item href="{{ route('dashboard') }}" :title="__('Units')" :icon="__('bia')" :active="__('bia')" />
+<x-panel.menu-bar.menu-item href="{{ route('admin.products.units.list') }}" :title="__('Units')" :icon="__('bia')" :active="__('admin.products.units.list')" />
 <x-panel.menu-bar.menu-item href="{{ route('dashboard') }}" :title="__('Brands')" :icon="__('brand_family')" :active="__('category')" />
 <x-panel.menu-bar.menu-item href="{{ route('dashboard') }}" :title="__('Categories')" :icon="__('category')" :active="__('category')" />
 <x-panel.menu-bar.menu-item href="{{ route('dashboard') }}" :title="__('Sub Categories')" :icon="__('linked_services')" :active="__('category')" />

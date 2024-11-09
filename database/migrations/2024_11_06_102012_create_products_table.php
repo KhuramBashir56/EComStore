@@ -21,7 +21,7 @@ return new class extends Migration
 
         Schema::create('brands', function (Blueprint $table) {
             $table->id();
-            $table->string('ref_id', 20);
+            $table->string('ref_id', 20)->unique();
             $table->foreignId('author_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('name', 48)->unique();
             $table->string('keywords', 255);
@@ -35,7 +35,7 @@ return new class extends Migration
 
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('ref_id', 20);
+            $table->string('ref_id', 20)->unique();
             $table->foreignId('author_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('name', 48)->unique();
             $table->string('keywords', 255);
@@ -50,7 +50,7 @@ return new class extends Migration
 
         Schema::create('sub_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('ref_id', 20);
+            $table->string('ref_id', 20)->unique();
             $table->foreignId('author_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('name', 48)->unique();
@@ -72,7 +72,7 @@ return new class extends Migration
 
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('ref_id', 20);
+            $table->string('ref_id', 20)->unique();
             $table->foreignId('author_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('sub_category_id')->constrained('sub_categories')->cascadeOnDelete()->cascadeOnUpdate();

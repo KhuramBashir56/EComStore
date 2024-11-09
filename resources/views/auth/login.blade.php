@@ -5,7 +5,7 @@
         @if (session('error'))
             <span class="text-white bg-red-500 px-4 py-2 rounded-md mb-2 text-center sm:max-w-sm">{{ session('error') }}</span>
         @endif
-        <x-ui.card.index class="w-full sm:max-w-sm mx-auto p-4 rounded-xl">
+        <x-ui.card class="w-full sm:max-w-sm mx-auto p-4 rounded-xl">
             <p class="mb-2 text-center text-black dark:text-gray-200">{{ __('Please enter your credentials to login your account.') }}</p>
             <form method="POST" action="{{ route('login.store') }}">
                 @csrf
@@ -25,7 +25,7 @@
                     <x-ui.buttons.button type="submit" :button="__('default')" :title="__('Log in')" class="w-full" />
                 </div>
             </form>
-        </x-ui.card.index>
+        </x-ui.card>
         <p class="mt-4 text-center text-gray-800 dark:text-gray-200">
             {{ __('If you have no account yet click to') }}
             <a wire:navigate href="{{ route('register') }}" class="text-secondary-500 hover:text-primary-600 dark:hover:text-secondary-600 hover:underline">{{ __('Register') }}</a>

@@ -42,28 +42,28 @@
                         <x-web.heading :title="__('Contact Information')" class="text-xl border-secondary-500" />
                         <div class="w-full grid gap-2 divide-y divide-primary-200 dark:divide-gray-600">
                             <div class="flex items-center gap-3 py-2">
-                                <img src="{{ asset('assets/images/web/social-media/whatsapp.svg') }}" alt="Whatsapp" class="size-5">
+                                <img src="{{ asset('assets/images/web/social-media/whatsapp.svg') }}" alt="Whatsapp" class="size-5" loading="lazy">
                                 <div class="flex flex-col">
                                     <address>{{ config('app.whatsapp') }}</address>
                                     <span class="text-xs">Monday - Saturday, 8AM - 8PM</span>
                                 </div>
                             </div>
                             <div class="flex items-center gap-3 py-2">
-                                <img src="{{ asset('assets/images/web/telephone.svg') }}" alt="Phone" class="size-5">
+                                <img src="{{ asset('assets/images/web/telephone.svg') }}" alt="Phone" class="size-5" loading="lazy">
                                 <div class="flex flex-col">
                                     <address>{{ config('app.phone') }}</address>
                                     <span class="text-xs">Monday - Saturday, 8AM - 8PM</span>
                                 </div>
                             </div>
                             <div class="flex items-center gap-3 py-2">
-                                <img src="{{ asset('assets/images/web/envelope.svg') }}" alt="Email" class="size-5">
+                                <img src="{{ asset('assets/images/web/envelope.svg') }}" alt="Email" class="size-5" loading="lazy">
                                 <div class="flex flex-col">
                                     <address>{{ config('app.email') }}</address>
                                     <span class="text-xs">27/7, 8AM - 8PM</span>
                                 </div>
                             </div>
                             <div class="flex items-center gap-3 py-2">
-                                <img src="{{ asset('assets/images/web/geo-alt.svg') }}" alt="Address" class="size-5">
+                                <img src="{{ asset('assets/images/web/geo-alt.svg') }}" alt="Address" class="size-5" loading="lazy">
                                 <div class="flex flex-col">
                                     <address>{{ config('app.address') }}</address>
                                     <span class="text-xs">Monday - Saturday, 8AM - 8PM</span>
@@ -82,16 +82,16 @@
                 <livewire:web.components.footer.payment-methods lazy />
                 <div class="flex gap-4 items-center md:justify-end justify-center">
                     <a href="#" class="flex items-center justify-center rounded-full p-2 hover:bg-sky-700" title="Facebook">
-                        <img src="{{ asset('assets/images/web/social-media/facebook.svg') }}" class="size-6" alt="Facebook">
+                        <img src="{{ asset('assets/images/web/social-media/facebook.svg') }}" loading="lazy" class="size-6" alt="Facebook">
                     </a>
                     <a href="#" class="flex items-center justify-center rounded-full p-2 hover:bg-gradient-to-bl from-blue-800 to-orange-400" title="Instagram">
-                        <img src="{{ asset('assets/images/web/social-media/instagram.svg') }}" class="size-6" alt="Instagram">
+                        <img src="{{ asset('assets/images/web/social-media/instagram.svg') }}" loading="lazy" class="size-6" alt="Instagram">
                     </a>
                     <a href="#" class="flex items-center justify-center rounded-full p-2 hover:bg-green-700" title="Whatsapp">
-                        <img src="{{ asset('assets/images/web/social-media/whatsapp.svg') }}" class="size-6" alt="Whatsapp">
+                        <img src="{{ asset('assets/images/web/social-media/whatsapp.svg') }}" loading="lazy" class="size-6" alt="Whatsapp">
                     </a>
                     <a href="#" class="flex items-center justify-center rounded-full p-2 hover:bg-black" title="Tiktok">
-                        <img src="{{ asset('assets/images/web/social-media/tiktok.svg') }}" class="size-6" alt="Tiktok">
+                        <img src="{{ asset('assets/images/web/social-media/tiktok.svg') }}" loading="lazy" class="size-6" alt="Tiktok">
                     </a>
                 </div>
             </div>

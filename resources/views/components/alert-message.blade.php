@@ -1,4 +1,4 @@
-<div id="alert" class="hidden fixed right-4 bottom-0 z-50 mb-4 max-w-lg ml-4 rounded-md   border-l-[13px] p-4" role="alert">
+<div id="alert" class="hidden fixed right-4 bottom-4 z-50 max-w-lg ml-4 rounded-md   border-l-[13px] p-4" role="alert">
     <div class="flex gap-x-4 items-center">
         <div id="icon-wrapper" class="flex w-fit aspect-square items-center justify-center rounded-full text-white p-1">
             <span id="alert-icon" class="material-symbols-outlined text-4xl font-extrabold"></span>
