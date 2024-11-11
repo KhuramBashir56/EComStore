@@ -2,8 +2,10 @@
 
 namespace App\Livewire\Panel\Products\Brands;
 
+use App\Models\ActivityLog;
 use App\Models\Brand;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -31,19 +33,23 @@ class AddNewBrand extends Component
             'description' => ['required', 'string', 'max:155'],
         ]);
         try {
-            $brand = new Brand;
-            $brand->ref_id = Brand::refId();
-            $brand->author_id = Auth::user()->id;
-            $brand->name = trim($this->name);
-            $brand->logo = $this->logo->store('products/brands', 'public');
-            $brand->keywords = implode(', ', $this->keywords);
-            $brand->description = $this->description;
-            $brand->created_at = now()->format('Y-m-d H:i:s.u');
-            $brand->save();
+            DB::transaction(function () {
+                $brand = new Brand;
+                $brand->ref_id = Brand::refId();
+                $brand->author_id = Auth::user()->id;
+                $brand->name = trim($this->name);
+                $brand->logo = $this->logo->store('products/brands', 'public');
+                $brand->keywords = implode(', ', $this->keywords);
+                $brand->description = $this->description;
+                $brand->created_at = now()->format('Y-m-d H:i:s.u');
+                $brand->save();
+                ActivityLog::activity($brand->id, 'create', 'Product Brand', NULL);
+            });
             $this->dispatch('alert', type: 'success', message: 'New brand added successfully');
             $this->cancel();
         } catch (\Throwable $th) {
             $this->dispatch('alert', type: 'error', message: 'Something went wrong please try again.');
+            $this->cancel();
         }
     }
 

@@ -1,4 +1,4 @@
-<x-slot:title>{{ __('Add New Brands') }}</x-slot>
+<x-slot:title>{{ __('Add New Brand') }}</x-slot>
 <section class="grid gap-4">
     <x-ui.card class="w-full rounded-xl p-4 sm:grid-cols-2">
         <div class="sm:col-span-2 mb-4">

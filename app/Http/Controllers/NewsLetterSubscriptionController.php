@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ActivityLog;
 use App\Models\NewsLetterSubscription;
 
 class NewsLetterSubscriptionController extends Controller
@@ -19,6 +20,7 @@ class NewsLetterSubscriptionController extends Controller
                     $subscriber->status = 'verified';
                     $subscriber->updated_at = now()->format('Y-m-d H:i:s.u');
                     $subscriber->update();
+                    ActivityLog::activity($subscriber->id, 'verification', 'Newsletter', NULL);
                     return view('guest.mail.news-letter-subscription-confirmation');
                 } catch (\Throwable $th) {
                     return redirect()->route('home');

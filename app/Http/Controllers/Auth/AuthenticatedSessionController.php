@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\ActivityLog;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,19 +14,27 @@ class AuthenticatedSessionController extends Controller
 {
     public function index(): View
     {
+
         return view('auth.login');
     }
 
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
-        $request->session()->regenerate();
-        return redirect()->intended(route('dashboard', absolute: false));
+        try {
+            $request->authenticate();
+            $request->session()->regenerate();
+            ActivityLog::activity(Auth::user()->id, 'login', 'Account', NULL);
+            return redirect()->intended(route('dashboard', absolute: false));
+        } catch (\Throwable $th) {
+            Auth::guard('web')->logout();
+            return redirect()->back()->with('error', 'Something went wrong. Please try again later.');
+        }
     }
 
 
     public function destroy(Request $request): RedirectResponse
     {
+        ActivityLog::activity(Auth::user()->id, 'logout', 'Account', NULL);
         Auth::guard('web')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();

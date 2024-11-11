@@ -14,8 +14,6 @@ return new class extends Migration
             $table->string('name', 48)->unique();
             $table->string('code', 3)->unique();
             $table->enum('status', ['published', 'unpublished', 'deleted'])->default('unpublished');
-            $table->foreignId('deleted_by')->nullable()->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->timestamp('deleted_at')->nullable();
             $table->timestamps(6);
         });
 
@@ -28,8 +26,6 @@ return new class extends Migration
             $table->string('description', 155);
             $table->string('logo', 255);
             $table->enum('status', ['published', 'unpublished', 'deleted'])->default('unpublished');
-            $table->foreignId('deleted_by')->nullable()->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->timestamp('deleted_at')->nullable();
             $table->timestamps(6);
         });
 
@@ -42,9 +38,6 @@ return new class extends Migration
             $table->string('description', 155);
             $table->string('thumbnail', 255);
             $table->enum('status', ['published', 'unpublished', 'deleted'])->default('unpublished');
-            $table->foreignId('deleted_by')->nullable()->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->timestamp('deleted_at')->nullable();
-            $table->foreignId('updated_by')->nullable()->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
 
@@ -58,9 +51,6 @@ return new class extends Migration
             $table->string('description', 155);
             $table->string('thumbnail', 255);
             $table->enum('status', ['published', 'unpublished', 'deleted'])->default('unpublished');
-            $table->foreignId('deleted_by')->nullable()->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->timestamp('deleted_at')->nullable();
-            $table->foreignId('updated_by')->nullable()->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps(6);
         });
 
@@ -98,8 +88,6 @@ return new class extends Migration
             $table->double('ratings', 1, 2)->default(0.00);
             $table->integer('delivered')->default(0);
             $table->integer('rejected')->default(0);
-            $table->foreignId('deleted_by')->nullable()->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->timestamp('deleted_at')->nullable();
             $table->timestamps(6);
         });
     }

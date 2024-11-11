@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\ActivityLog;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
@@ -30,15 +31,20 @@ class RegisteredUserController extends Controller
         ], [
             'phone.regex' => 'Invalid phone number format please start 03xxxxxxxxx',
         ]);
-        $user = new User;
-        $user->ref_id = User::refId();
-        $user->role_id = Role::buyer()->id;
-        $user->name = $request->first_name . ' ' . $request->last_name;
-        $user->phone = $request->phone;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
-        $user->created_at = now()->format('Y-m-d H:i:s.u');
-        $user->save();
-        return redirect()->route('login')->with('success', 'You have registered successfully. Please login to continue.');
+        try {
+            $user = new User;
+            $user->ref_id = User::refId();
+            $user->role_id = Role::buyer()->id;
+            $user->name = $request->first_name . ' ' . $request->last_name;
+            $user->phone = $request->phone;
+            $user->email = $request->email;
+            $user->password = Hash::make($request->password);
+            $user->created_at = now()->format('Y-m-d H:i:s.u');
+            $user->save();
+            ActivityLog::activity($user->id, 'register', 'Account', NULL);
+            return redirect()->route('login')->with('success', 'You have registered successfully. Please login to continue.');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Something went wrong. Please try again later.');
+        }
     }
 }

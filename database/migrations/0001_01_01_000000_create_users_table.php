@@ -89,6 +89,18 @@ return new class extends Migration
             $table->longText('payload');
             $table->integer('last_activity')->index();
         });
+
+        Schema::create('activity_logs', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->nullable()->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('ref_id', 20)->nullable();
+            $table->string('type', 255);
+            $table->string('subject', 255);
+            $table->string('description', 255)->nullable();
+            $table->string('ip_address', 45);
+            $table->text('user_agent')->nullable();
+            $table->timestamp('last_activity', 6);
+        });
     }
 
     public function down(): void

@@ -3,6 +3,7 @@
 namespace App\Livewire\Web\Components;
 
 use App\Mail\NewsLetterSubscriptionConfirmation;
+use App\Models\ActivityLog;
 use App\Models\NewsLetterSubscription;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -30,6 +31,7 @@ class NewsLetter extends Component
                 $subscriber->created_at = now()->format('Y-m-d H:i:s.u');
                 $subscriber->save();
                 Mail::to($this->email)->send(new NewsLetterSubscriptionConfirmation($subscriber->ref_id));
+                ActivityLog::activity($subscriber->id, 'subscribe', 'Newsletter', NULL);
                 $this->reset(['email']);
                 $this->dispatch('alert', type: 'success', message: 'You have successfully subscribed to our newsletter. Please check your inbox to confirm your email.');
             });

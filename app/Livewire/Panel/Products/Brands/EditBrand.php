@@ -2,7 +2,9 @@
 
 namespace App\Livewire\Panel\Products\Brands;
 
+use App\Models\ActivityLog;
 use App\Models\Brand;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\On;
@@ -22,15 +24,15 @@ class EditBrand extends Component
             $this->dispatch('alert', type: 'warning', message: 'Brand not found');
             $this->cancel();
         } else {
-            if ($brand->status === 'deleted') {
-                $this->dispatch('alert', type: 'warning', message: 'This brand already deleted you can not edit it.');
-                $this->cancel();
-            } else {
+            if ($brand->status !== 'deleted') {
                 $this->brand = $brand;
                 $this->name = $brand->name;
                 $this->old_logo = $brand->logo;
                 $this->keywords = explode(', ', $brand->keywords);
                 $this->description = $brand->description;
+            } else {
+                $this->dispatch('alert', type: 'warning', message: 'This brand already deleted you can not edit it.');
+                $this->cancel();
             }
         }
     }
@@ -50,21 +52,29 @@ class EditBrand extends Component
             'keywords' => ['required', 'array'],
             'description' => ['required', 'string', 'max:155'],
         ]);
-        try {
-            $this->brand->name = trim($this->name);
-            $this->brand->logo = $this->logo ? $this->logo->store('products/brands', 'public') : $this->old_logo;
-            $this->brand->keywords = implode(', ', $this->keywords);
-            $this->brand->description = $this->description;
-            $this->brand->status = 'unpublished';
-            $this->brand->updated_at = now()->format('Y-m-d H:i:s.u');
-            $this->brand->update();
-            $this->dispatch('alert', type: 'success', message: 'New brand added successfully');
-            if (!empty($this->logo)) {
-                Storage::disk('public')->delete($this->old_logo);
+        if ($this->brand->status !== 'deleted') {
+            try {
+                DB::transaction(function () {
+                    $this->brand->name = trim($this->name);
+                    $this->brand->logo = $this->logo ? $this->logo->store('products/brands', 'public') : $this->old_logo;
+                    $this->brand->keywords = implode(', ', $this->keywords);
+                    $this->brand->description = $this->description;
+                    $this->brand->status = 'unpublished';
+                    $this->brand->updated_at = now()->format('Y-m-d H:i:s.u');
+                    $this->brand->update();
+                    ActivityLog::activity($this->brand->id, 'update', 'Product Brand', NULL);
+                });
+                if (!empty($this->logo)) {
+                    Storage::disk('public')->delete($this->old_logo);
+                }
+                $this->dispatch('alert', type: 'success', message: 'New brand added successfully');
+                $this->cancel();
+            } catch (\Throwable $th) {
+                $this->dispatch('alert', type: 'error', message: 'Something went wrong please try again.');
+                $this->cancel();
             }
-            $this->cancel();
-        } catch (\Throwable $th) {
-            $this->dispatch('alert', type: 'error', message: 'Something went wrong please try again.');
+        } else {
+            $this->dispatch('alert', type: 'warning', message: 'This brand already deleted you can not edit it.');
             $this->cancel();
         }
     }

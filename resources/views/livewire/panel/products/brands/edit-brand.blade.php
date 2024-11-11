@@ -1,11 +1,11 @@
-<x-slot:title>{{ __('Edit Brands') }}</x-slot>
+<x-slot:title>{{ __('Edit Brand') }}</x-slot>
 <section class="grid gap-4">
     <x-ui.card class="w-full rounded-xl p-4 sm:grid-cols-2">
         <div class="sm:col-span-2 mb-4">
             @if ($logo)
                 <x-thumbnail :url="$logo->temporaryUrl()" class="w-full sm:max-w-56 aspect-square" />
             @else
-                <x-thumbnail :url="asset(config('filesystems.storage') . $brand->logo)" class="w-full sm:max-w-56 aspect-square" />
+                <x-thumbnail :url="asset(config('filesystems.storage') . $old_logo)" class="w-full sm:max-w-56 aspect-square" />
             @endif
         </div>
         <x-ui.form.label :title="__('Brand Name')" :for="__('name')">

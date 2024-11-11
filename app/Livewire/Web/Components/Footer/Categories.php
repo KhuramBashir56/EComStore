@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Web\Components\Footer;
 
+use App\Models\Category;
 use Livewire\Component;
 
 class Categories extends Component
@@ -24,6 +25,8 @@ class Categories extends Component
 
     public function render()
     {
-        return view('livewire.web.components.footer.categories');
+        return view('livewire.web.components.footer.categories', [
+            'categories' => Category::where('status', 'published')->select('id', 'ref_id', 'name')->orderBy('name')->get()
+        ]);
     }
 }

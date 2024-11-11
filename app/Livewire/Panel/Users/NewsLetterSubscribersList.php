@@ -2,7 +2,9 @@
 
 namespace App\Livewire\Panel\Users;
 
+use App\Models\ActivityLog;
 use App\Models\NewsLetterSubscription;
+use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -22,7 +24,10 @@ class NewsLetterSubscribersList extends Component
             $this->dispatch('alert', type: 'error', message: 'Subscriber not found.');
         } else {
             try {
-                $subscriber->delete();
+                DB::transaction(function () use ($subscriber) {
+                    $subscriber->delete();
+                    ActivityLog::activity($subscriber->id, 'delete', 'Newsletter', 'Deleted email address is: (' . $subscriber->email . ')');
+                });
                 $this->dispatch('alert', type: 'success', message: 'Subscriber deleted successfully.');
             } catch (\Throwable $th) {
                 $this->dispatch('alert', type: 'error', message: 'Something went wrong please try again.');

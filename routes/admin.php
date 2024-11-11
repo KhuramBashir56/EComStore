@@ -13,6 +13,12 @@ Route::middleware(['auth', 'active', 'can:admin'])->name('admin.')->prefix('admi
             Route::get('{brand}/edit', PRODUCTS\Brands\EditBrand::class)->name('edit');
             Route::get('{brand}/details', PRODUCTS\Brands\BrandDetails::class)->name('details');
         });
+        Route::prefix('categories')->name('categories.')->group(function () {
+            Route::get('list', PRODUCTS\Categories\CategoriesList::class)->name('list');
+            Route::get('add', PRODUCTS\Categories\AddNewCategory::class)->name('add');
+            Route::get('{category}/edit', PRODUCTS\Categories\EditCategory::class)->name('edit');
+            Route::get('{category}/details', PRODUCTS\Categories\CategoryDetails::class)->name('details');
+        });
         Route::prefix('sub-categories')->name('sub_categories.')->group(function () {
             Route::get('list', PRODUCTS\SubCategories\SubCategoriesList::class)->name('list');
             Route::get('add', PRODUCTS\SubCategories\AddNewSubCategory::class)->name('add');
@@ -22,6 +28,7 @@ Route::middleware(['auth', 'active', 'can:admin'])->name('admin.')->prefix('admi
             Route::get('add', App\Livewire\Panel\Users\AddNewUser::class)->name('add');
             Route::get('list', App\Livewire\Panel\Users\UsersList::class)->name('list');
             Route::get('news-letter-subscribers', App\Livewire\Panel\Users\NewsLetterSubscribersList::class)->name('news_letter_subscribers');
+            Route::get('{user}/activity-logs', App\Livewire\Panel\Users\ActivityLogs::class)->name('activity_logs');
         });
     });
 });

@@ -2,7 +2,9 @@
 
 namespace App\Livewire\Panel\Products\Units;
 
+use App\Models\ActivityLog;
 use App\Models\Unit;
+use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -23,62 +25,81 @@ class UnitList extends Component
     public function editUnit(Unit $unit)
     {
         $this->authorize('admin');
-        if ($unit->status === 'deleted') {
-            $this->dispatch('alert', type: 'warning', message: 'Unit already deleted you can not edit it.');
-        } else {
+        if ($unit && $unit->status !== 'deleted') {
             $this->unit_id = $unit->id;
             $this->editUnitModal = true;
+        } else {
+            $this->dispatch('alert', type: 'warning', message: 'Unit already deleted you can not edit it.');
+            $this->cancel();
         }
     }
 
     public function unPublishUnit(Unit $unit)
     {
         $this->authorize('admin');
-        if ($unit->status === 'unpublished' && $unit->status === 'deleted') {
-            $this->dispatch('alert', type: 'warning', message: 'Unit already unpublished');
-        } else {
+        if ($unit && $unit->status !== 'published') {
             try {
-                $unit->status = 'unpublished';
-                $unit->updated_at = now()->format('Y-m-d H:i:s.u');
-                $unit->update();
+                DB::transaction(function () use ($unit) {
+                    $unit->status = 'unpublished';
+                    $unit->updated_at = now()->format('Y-m-d H:i:s.u');
+                    $unit->update();
+                    ActivityLog::activity($unit->id, 'unpublish', 'Product Unit', NULL);
+                });
                 $this->dispatch('alert', type: 'success', message: 'Unit unpublished successfully');
+                $this->cancel();
             } catch (\Throwable $th) {
                 $this->dispatch('alert', type: 'error', message: 'Something went wrong please try again.');
+                $this->cancel();
             }
+        } else {
+            $this->dispatch('alert', type: 'warning', message: 'Unit already unpublished');
+            $this->cancel();
         }
     }
 
     public function publishUnit(Unit $unit)
     {
         $this->authorize('admin');
-        if ($unit->status == 'published' && $unit->status === 'deleted') {
-            $this->dispatch('alert', type: 'warning', message: 'Unit already published');
-        } else {
+        if ($unit && $unit->status !== 'unpublished') {
             try {
-                $unit->status = 'published';
-                $unit->updated_at = now()->format('Y-m-d H:i:s.u');
-                $unit->update();
+                DB::transaction(function () use ($unit) {
+                    $unit->status = 'published';
+                    $unit->updated_at = now()->format('Y-m-d H:i:s.u');
+                    $unit->update();
+                    ActivityLog::activity($unit->id, 'publish', 'Product Unit', NULL);
+                });
                 $this->dispatch('alert', type: 'success', message: 'Unit published successfully');
+                $this->cancel();
             } catch (\Throwable $th) {
                 $this->dispatch('alert', type: 'error', message: 'Something went wrong please try again.');
+                $this->cancel();
             }
+        } else {
+            $this->dispatch('alert', type: 'warning', message: 'Unit already published');
+            $this->cancel();
         }
     }
 
     public function deleteUnit(Unit $unit)
     {
         $this->authorize('admin');
-        if ($unit->status == 'deleted') {
-            $this->dispatch('alert', type: 'warning', message: 'Unit already deleted');
-        } else {
+        if ($unit && $unit->status !== 'deleted') {
             try {
-                $unit->status = 'deleted';
-                $unit->updated_at = now()->format('Y-m-d H:i:s.u');
-                $unit->update();
+                DB::transaction(function () use ($unit) {
+                    $unit->status = 'deleted';
+                    $unit->updated_at = now()->format('Y-m-d H:i:s.u');
+                    $unit->update();
+                    ActivityLog::activity($unit->id, 'delete', 'Product Unit', NULL);
+                });
                 $this->dispatch('alert', type: 'success', message: 'Unit deleted successfully');
+                $this->cancel();
             } catch (\Throwable $th) {
                 $this->dispatch('alert', type: 'error', message: 'Something went wrong please try again.');
+                $this->cancel();
             }
+        } else {
+            $this->dispatch('alert', type: 'warning', message: 'Unit already deleted');
+            $this->cancel();
         }
     }
 
