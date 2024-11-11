@@ -3,7 +3,10 @@
     <section class="flex flex-col sm:justify-center items-center py-10 px-4 bg-gray-100 dark:bg-gray-900">
         <h1 class="text-3xl font-medium text-center mb-10 text-gray-950 dark:text-gray-200">{{ __('Login Account') }}</h1>
         @if (session('error'))
-            <span class="text-white bg-red-500 px-4 py-2 rounded-md mb-2 text-center sm:max-w-sm">{{ session('error') }}</span>
+            <span class="text-white bg-red-700 dark:bg-red-600 px-4 py-2 mb-4 text-center w-full sm:max-w-sm">{{ session('error') }}</span>
+        @endif
+        @if (session('success'))
+            <span class="text-white bg-green-700 dark:bg-green-600 px-4 py-2 mb-4 text-center w-full sm:max-w-sm">{{ session('success') }}</span>
         @endif
         <x-ui.card class="w-full sm:max-w-sm mx-auto p-4 rounded-xl">
             <p class="mb-2 text-center text-black dark:text-gray-200">{{ __('Please enter your credentials to login your account.') }}</p>

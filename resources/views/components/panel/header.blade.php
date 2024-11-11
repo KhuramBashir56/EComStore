@@ -23,22 +23,5 @@
         <span class="material-symbols-outlined">mail</span>
         <span class="absolute top-1 right-1 size-4 rounded-full bg-primary-500 text-white dark:bg-secondary-500 text-[11px] flex justify-center items-center">45</span>
     </a>
-    {{-- <x-panel.topbar.user-avatar /> --}}
 </header>
-@push('scripts')
-    <script type="text/javascript">
-        var sidebarToggle = document.getElementById('sidebar_toggle');
-        var menuBar = document.getElementById('sidebar');
-        sidebarToggle.addEventListener('click', function() {
-            menuBar.classList.toggle('-translate-x-full');
-        });
-        window.addEventListener('resize', function() {
-            menuBar.classList.add('-translate-x-full');
-        });
-        document.addEventListener('click', function(event) {
-            if (!menuBar.contains(event.target) && !sidebarToggle.contains(event.target)) {
-                menuBar.classList.add('-translate-x-full');
-            }
-        });
-    </script>
-@endpush
+

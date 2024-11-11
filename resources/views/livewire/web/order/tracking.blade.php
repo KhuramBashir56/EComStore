@@ -5,7 +5,7 @@
         <span class="text-white bg-red-500 px-4 py-2 rounded-md mb-2 text-center sm:max-w-sm">{{ session('error') }}</span>
     @endif
     <x-ui.card class="w-full sm:max-w-sm mx-auto p-4 rounded-xl">
-        <p class="mb-2 text-center text-black dark:text-gray-200">{{ __('Please enter your Tracking Id') }}</p>
+        <p class="mb-2 text-center text-black dark:text-gray-200">{{ __('Track your order using ') }}<strong>{{ __('Tracking Id') }}</strong>{{ __('.') }}</p>
         <x-ui.form.label :title="__('Tracking Id')" :for="__('tracking_id')">
             <x-ui.form.input type="text" wire:model="tracking_id" :for="__('tracking_id')" maxlength="10" autofocus required autocomplete="off" placeholder="{{ __('Tracking Id') }}" class="rounded-md" />
         </x-ui.form.label>

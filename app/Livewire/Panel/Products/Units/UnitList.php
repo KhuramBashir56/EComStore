@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class UnitList extends Component
 {
-    public $unit_id;
+    public $unit_id, $search;
 
     public $addUnitModal = false;
 
@@ -23,7 +23,7 @@ class UnitList extends Component
     public function editUnit(Unit $unit)
     {
         $this->authorize('admin');
-        if ($unit->status == 'deleted') {
+        if ($unit->status === 'deleted') {
             $this->dispatch('alert', type: 'warning', message: 'Unit already deleted you can not edit it.');
         } else {
             $this->unit_id = $unit->id;
@@ -34,33 +34,51 @@ class UnitList extends Component
     public function unPublishUnit(Unit $unit)
     {
         $this->authorize('admin');
-        try {
-            if ($unit->status == 'unpublished') {
-                $this->dispatch('alert', type: 'warning', message: 'Unit already unpublished');
-            } else {
+        if ($unit->status === 'unpublished' && $unit->status === 'deleted') {
+            $this->dispatch('alert', type: 'warning', message: 'Unit already unpublished');
+        } else {
+            try {
                 $unit->status = 'unpublished';
                 $unit->updated_at = now()->format('Y-m-d H:i:s.u');
                 $unit->update();
                 $this->dispatch('alert', type: 'success', message: 'Unit unpublished successfully');
+            } catch (\Throwable $th) {
+                $this->dispatch('alert', type: 'error', message: 'Something went wrong please try again.');
             }
-        } catch (\Throwable $th) {
-            $this->dispatch('alert', type: 'error', message: 'Something went wrong please try again.');
         }
     }
 
     public function publishUnit(Unit $unit)
     {
         $this->authorize('admin');
-        try {
-            if ($unit->status == 'published') {
-                $this->dispatch('alert', type: 'warning', message: 'Unit already published');
-            } else {
+        if ($unit->status == 'published' && $unit->status === 'deleted') {
+            $this->dispatch('alert', type: 'warning', message: 'Unit already published');
+        } else {
+            try {
                 $unit->status = 'published';
+                $unit->updated_at = now()->format('Y-m-d H:i:s.u');
                 $unit->update();
                 $this->dispatch('alert', type: 'success', message: 'Unit published successfully');
+            } catch (\Throwable $th) {
+                $this->dispatch('alert', type: 'error', message: 'Something went wrong please try again.');
             }
-        } catch (\Throwable $th) {
-            $this->dispatch('alert', type: 'error', message: 'Something went wrong please try again.');
+        }
+    }
+
+    public function deleteUnit(Unit $unit)
+    {
+        $this->authorize('admin');
+        if ($unit->status == 'deleted') {
+            $this->dispatch('alert', type: 'warning', message: 'Unit already deleted');
+        } else {
+            try {
+                $unit->status = 'deleted';
+                $unit->updated_at = now()->format('Y-m-d H:i:s.u');
+                $unit->update();
+                $this->dispatch('alert', type: 'success', message: 'Unit deleted successfully');
+            } catch (\Throwable $th) {
+                $this->dispatch('alert', type: 'error', message: 'Something went wrong please try again.');
+            }
         }
     }
 
@@ -76,7 +94,7 @@ class UnitList extends Component
     public function render()
     {
         return view('livewire.panel.products.units.unit-list', [
-            'units' => Unit::where('status', '!=', 'deleted')->select('id', 'name', 'code', 'status')->orderBy('name', 'asc')->get(),
+            'units' => Unit::where('status', '!=', 'deleted')->where('name', 'LIKE', $this->search . '%')->select('id', 'name', 'code', 'status')->orderBy('name', 'asc')->get(),
         ]);
     }
 }

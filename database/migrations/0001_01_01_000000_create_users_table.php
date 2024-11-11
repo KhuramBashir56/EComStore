@@ -71,7 +71,7 @@ return new class extends Migration
             $table->string('ref_id', 20)->unique();
             $table->foreignId('user_id')->nullable()->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('email', 48);
-            $table->enum('status', ['subscribed', 'unsubscribed'])->default('subscribed');
+            $table->enum('status', ['verified', 'unverified'])->default('unverified');
             $table->timestamps(6);
         });
 

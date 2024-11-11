@@ -4,7 +4,7 @@
             <div class="grid gap-4 lg:grid-cols-4 sm:grid-cols-2 place-items-start">
                 <div class="w-full grid gap-4">
                     <div class="w-full flex items-center sm:justify-normal justify-center">
-                        <x-logo wire:navigate class="size-24" />
+                        <x-logo wire:navigate class="size-28" />
                     </div>
                     <h3 class="text-xl font-bold sm:text-left text-center">{{ config('app.name') }}</h3>
                     <p>{{ config('app.description') }}</p>

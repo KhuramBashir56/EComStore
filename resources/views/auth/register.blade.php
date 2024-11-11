@@ -2,9 +2,6 @@
     <x-slot:title>{{ __('Register') }}</x-slot>
     <section class="flex flex-col sm:justify-center items-center py-10 px-4 bg-gray-100 dark:bg-gray-900">
         <h1 class="text-3xl font-medium text-center mb-10 text-gray-950 dark:text-gray-200">{{ __('Register Account') }}</h1>
-        @if (session('error'))
-            <span class="text-white bg-red-500 px-4 py-2 rounded-md mb-2 text-center sm:max-w-sm">{{ session('error') }}</span>
-        @endif
         <x-ui.card class="w-full sm:max-w-2xl mx-auto p-4 rounded-xl">
             <p class="mb-2 text-center text-black dark:text-gray-200">{{ __('Please enter your credentials to login your account.') }}</p>
             <form method="POST" action="{{ route('register.store') }}" class="grid gap-x-4 sm:grid-cols-2">

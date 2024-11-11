@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class NewsLetterSubscriptionEmail extends Mailable
+class NewsLetterSubscriptionConfirmation extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -30,7 +30,7 @@ class NewsLetterSubscriptionEmail extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'mail.news-letter-subscription-email',
+            markdown: 'mail.news-letter-subscription-confirmation',
             with: [
                 'ref_id' => $this->ref_id
             ]

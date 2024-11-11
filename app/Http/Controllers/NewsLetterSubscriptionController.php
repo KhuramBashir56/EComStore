@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\NewsLetterSubscription;
 
 class NewsLetterSubscriptionController extends Controller
@@ -13,14 +12,14 @@ class NewsLetterSubscriptionController extends Controller
         if (!$subscriber) {
             abort(404);
         } else {
-            if ($subscriber->status == 'subscribed') {
+            if ($subscriber->status == 'verified') {
                 return redirect()->route('home');
             } else {
                 try {
-                    $subscriber->status = 'subscribed';
+                    $subscriber->status = 'verified';
                     $subscriber->updated_at = now()->format('Y-m-d H:i:s.u');
                     $subscriber->update();
-                    return view('guest.mail.news-letter-subscription-email');
+                    return view('guest.mail.news-letter-subscription-confirmation');
                 } catch (\Throwable $th) {
                     return redirect()->route('home');
                 }

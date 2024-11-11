@@ -1,0 +1,8 @@
+@props(['for', 'size'])
+<div class="relative w-full" x-data="{ uploading: false, progress: 0 }" x-on:livewire-upload-start="uploading = true" x-on:livewire-upload-finish="uploading = false , progress = 0" x-on:livewire-upload-cancel="uploading = false" x-on:livewire-upload-error="uploading = false" x-on:livewire-upload-progress="progress = $event.detail.progress">
+    <input type="file" {{ $attributes->merge(['class' => 'block w-full p-0 focus:border-primary-500 dark:focus:border-secondary-500 focus:ring-primary-500 dark:focus:ring-secondary-500 bg-white dark:bg-gray-800 text-black dark:text-white file:cursor-pointer file:rounded-s-sm file:border-0 file:bg-primary-500 dark:file:bg-secondary-500 file:hover:bg-primary-700 dark:file:hover:bg-secondary-700 file:transition-colors file:duration-500 file:px-4 file:py-2 file:font-semibold file:text-white file:px-5 ' . ($errors->has($for) ? ' border-red-600 dark:border-red-500 ring-red-600 ring-red-500 focus:border-red-600 dark:focus:border-red-500 focus:ring-red-600 dark:focus:ring-red-500' : '') . ' form-input', 'id' => $for, 'name' => $for]) }} />
+    <x-ui.form.input-description :message="__('Before selecting a file, make sure the file is not larger than ' . $size . '.')" />
+    <div class="absolute top-0 w-full bg-gray-200 rounded-md h-[42px]" x-show="uploading" style="display: none;">
+        <div class="bg-primary-500 dark:bg-secondary-500 text-md font-medium text-blue-100 text-center p-0.5 h-full leading-none rounded-md flex items-center justify-center" x-bind:style="'width: ' + progress + '%'" x-text="progress + '%'"></div>
+    </div>
+</div>

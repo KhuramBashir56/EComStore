@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -31,13 +32,13 @@ class RegisteredUserController extends Controller
         ]);
         $user = new User;
         $user->ref_id = User::refId();
-        $user->role_id = 1;
+        $user->role_id = Role::buyer()->id;
         $user->name = $request->first_name . ' ' . $request->last_name;
         $user->phone = $request->phone;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->created_at = now()->format('Y-m-d H:i:s.u');
         $user->save();
-        return redirect(route('login', absolute: false));
+        return redirect()->route('login')->with('success', 'You have registered successfully. Please login to continue.');
     }
 }

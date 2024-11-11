@@ -5,7 +5,7 @@
                 <span class="material-symbols-outlined">close</span>
             </button>
             <div class="relative size-16 shrink-0 border-2 border-white rounded-full">
-                <img src='https://readymadeui.com/profile_2.webp' alt="{{ Auth::user()->name . __('\'s profile picture') }}" loading="lazy" class="p-1 size-full rounded-full" />
+                <img src='{{ Auth::user()->profile_image ? asset(config('filesystems.storage' . Auth::user()->profile->image)) : asset('assets/images/panel/user.png') }}' alt="{{ Auth::user()->name . __('\'s profile picture') }}" loading="lazy" class="p-1 size-full rounded-full" />
                 <span class="h-4 aspect-square rounded-full bg-green-600 block absolute bottom-0 right-0 border-2 border-primary-500 dark:border-secondary-500"></span>
             </div>
             <div class="w-full">

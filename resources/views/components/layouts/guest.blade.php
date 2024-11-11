@@ -15,7 +15,7 @@
             <h3 class="text-center text-3xl text-gray-800">{{ $title }}</h3>
         </div>
         <p class="text-base max-w-lg text-center">{{ $description }}</p>
-        <x-ui.links.link href="{{ route('home') }}" :link="__('default')" :title="__('Go Back to Home Page')" class="bg-primary-500 text-white hover:bg-primary-600" />
+        <x-ui.links.link href="{{ route('home') }}" :link="__('default')" :title="__('Go Back to Home Page')" class="rounded-full" />
     </div>
 </body>
 

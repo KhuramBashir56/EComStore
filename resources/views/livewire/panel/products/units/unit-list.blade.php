@@ -1,7 +1,8 @@
-<x-slot:title>{{ __('Products Units') }}</x-slot>
+<x-slot:title>{{ __('Units') }}</x-slot>
 <section class="grid gap-4">
     <x-panel.navigation>
-        <x-ui.buttons.button type="button" :button="__('default')" wire:click="addNewUnit" :title="__('Add New Unit')" class="font-medium rounded-md" />
+        <x-ui.buttons.button type="button" :button="__('default')" wire:click="addNewUnit" :title="__('Add New Unit')" class="font-medium rounded-md whitespace-nowrap" />
+        <x-ui.form.input type="search" wire:model.live.debounce.500ms="search" :for="__('search')" placeholder="{{ __('Search unit...') }}" class="sm:max-w-xs" />
     </x-panel.navigation>
     <x-ui.table>
         <x-ui.table.head>
@@ -30,7 +31,7 @@
                                 <x-ui.buttons.transparent-icon-button type="button" :button="__('green')" wire:click="publishUnit({{ $unit->id }})" wire:confirm="Are you sure you want to publish this unit?" :title="__('Publish')" :icon="__('visibility')" class="rounded-md" />
                             @endif
                             <x-ui.buttons.transparent-icon-button type="button" :button="__('blue')" wire:click="editUnit({{ $unit->id }})" :title="__('Delete')" :icon="__('edit')" class="rounded-md" />
-                            <x-ui.buttons.transparent-icon-button type="button" :button="__('red')" wire:click="deleteUnit({{ $unit->id }})" :title="__('Delete')" :icon="__('delete')" class="rounded-md" />
+                            <x-ui.buttons.transparent-icon-button type="button" :button="__('red')" wire:click="deleteUnit({{ $unit->id }})" wire:confirm="Are you sure you want to delete this unit?" :title="__('Delete')" :icon="__('delete')" class="rounded-md" />
                         </x-ui.table.actions>
                     </x-ui.table.td>
                 </x-ui.table.tr>
