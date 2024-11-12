@@ -15,16 +15,11 @@ class BrandDetails extends Component
     public function mount(Brand $brand)
     {
         $this->authorize('admin');
-        if (empty($brand)) {
-            $this->dispatch('alert', type: 'warning', message: 'Brand not found');
-            $this->redirectRoute('admin.products.brands.list',  navigate: true);
+        if ($brand && $brand->status !== 'deleted') {
+            $this->brand = $brand;
         } else {
-            if ($brand->status !== 'deleted') {
-                $this->brand = $brand;
-            } else {
-                $this->dispatch('alert', type: 'warning', message: 'This brand already deleted you can not edit it.');
-                $this->redirectRoute('admin.products.brands.list', navigate: true);
-            }
+            $this->dispatch('alert', type: 'warning', message: 'This brand already deleted you can not edit it.');
+            $this->redirectRoute('admin.products.brands.list', navigate: true);
         }
     }
 

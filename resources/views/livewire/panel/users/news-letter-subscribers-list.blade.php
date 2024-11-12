@@ -8,7 +8,7 @@
             <x-ui.form.option :content="__('250')" value="250" />
             <x-ui.form.option :content="__('500')" value="500" />
         </x-ui.form.select>
-        <x-ui.form.input type="search" :for="__('search')" wire:model.live="search" type="search" :placeholder="__('Search subscriber...')" class="sm:max-w-xs" />
+        <x-ui.form.input type="search" :for="__('search')" wire:model.live="search" :placeholder="__('Search subscriber...')" class="sm:max-w-xs" />
     </x-panel.navigation>
     <x-ui.table>
         <x-ui.table.head>

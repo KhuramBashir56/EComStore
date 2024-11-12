@@ -32,4 +32,16 @@ class ActivityLog extends Model
         $activity->save();
         return $activity;
     }
+
+    public static function activities(): array
+    {
+        return [
+            'Account',
+            'Newsletter',
+            'Product Unit',
+            'Product Brand',
+            'Product Category',
+            'Product Sub Category'
+        ];
+    }
 }

@@ -15,16 +15,11 @@ class CategoryDetails extends Component
     public function mount(Category $category)
     {
         $this->authorize('admin');
-        if (empty($category)) {
-            $this->dispatch('alert', type: 'warning', message: 'Category not found');
-            $this->redirectRoute('admin.products.categories', navigate: true);
+        if ($category && $category->status !== 'deleted') {
+            $this->category = $category;
         } else {
-            if ($category->status !== 'deleted') {
-                $this->category = $category;
-            } else {
-                $this->dispatch('alert', type: 'warning', message: 'This category already deleted you can not edit it.');
-                $this->redirectRoute('admin.products.categories', navigate: true);
-            }
+            $this->dispatch('alert', type: 'warning', message: 'This category already deleted you can not edit it.');
+            $this->redirectRoute('admin.products.categories', navigate: true);
         }
     }
 

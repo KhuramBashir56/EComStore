@@ -37,7 +37,7 @@ class UnitList extends Component
     public function unPublishUnit(Unit $unit)
     {
         $this->authorize('admin');
-        if ($unit && $unit->status !== 'published') {
+        if ($unit && $unit->status === 'published') {
             try {
                 DB::transaction(function () use ($unit) {
                     $unit->status = 'unpublished';
@@ -60,7 +60,7 @@ class UnitList extends Component
     public function publishUnit(Unit $unit)
     {
         $this->authorize('admin');
-        if ($unit && $unit->status !== 'unpublished') {
+        if ($unit && $unit->status === 'unpublished') {
             try {
                 DB::transaction(function () use ($unit) {
                     $unit->status = 'published';

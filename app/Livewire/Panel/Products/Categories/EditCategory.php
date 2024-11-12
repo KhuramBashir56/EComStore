@@ -20,20 +20,15 @@ class EditCategory extends Component
     public function mount(Category $category)
     {
         $this->authorize('admin');
-        if (empty($category)) {
-            $this->dispatch('alert', type: 'warning', message: 'Category not found');
-            $this->cancel();
+        if ($category && $category->status !== 'deleted') {
+            $this->category = $category;
+            $this->name = $category->name;
+            $this->old_thumbnail = $category->thumbnail;
+            $this->keywords = explode(', ', $category->keywords);
+            $this->description = $category->description;
         } else {
-            if ($category->status !== 'deleted') {
-                $this->category = $category;
-                $this->name = $category->name;
-                $this->old_thumbnail = $category->thumbnail;
-                $this->keywords = explode(', ', $category->keywords);
-                $this->description = $category->description;
-            } else {
-                $this->dispatch('alert', type: 'warning', message: 'This category already deleted you can not edit it.');
-                $this->cancel();
-            }
+            $this->dispatch('alert', type: 'warning', message: 'This category already deleted you can not edit it.');
+            $this->cancel();
         }
     }
 
@@ -59,6 +54,8 @@ class EditCategory extends Component
                     $this->category->thumbnail = $this->thumbnail ? $this->thumbnail->store('products/categories', 'public') : $this->old_thumbnail;
                     $this->category->keywords = implode(', ', $this->keywords);
                     $this->category->description = $this->description;
+                    $this->category->status = 'unpublished';
+                    $this->category->updated_at = now()->format('Y-m-d H:i:s.u');
                     $this->category->save();
                     ActivityLog::activity($this->category->id, 'update', 'Product Category', NULL);
                 });

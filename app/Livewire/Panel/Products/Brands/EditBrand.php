@@ -20,20 +20,15 @@ class EditBrand extends Component
     public function mount(Brand $brand)
     {
         $this->authorize('admin');
-        if (empty($brand)) {
-            $this->dispatch('alert', type: 'warning', message: 'Brand not found');
-            $this->cancel();
+        if ($brand && $brand->status !== 'deleted') {
+            $this->brand = $brand;
+            $this->name = $brand->name;
+            $this->old_logo = $brand->logo;
+            $this->keywords = explode(', ', $brand->keywords);
+            $this->description = $brand->description;
         } else {
-            if ($brand->status !== 'deleted') {
-                $this->brand = $brand;
-                $this->name = $brand->name;
-                $this->old_logo = $brand->logo;
-                $this->keywords = explode(', ', $brand->keywords);
-                $this->description = $brand->description;
-            } else {
-                $this->dispatch('alert', type: 'warning', message: 'This brand already deleted you can not edit it.');
-                $this->cancel();
-            }
+            $this->dispatch('alert', type: 'warning', message: 'This brand already deleted you can not edit it.');
+            $this->cancel();
         }
     }
 

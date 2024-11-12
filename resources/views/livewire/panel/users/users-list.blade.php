@@ -2,14 +2,14 @@
 <section class="grid gap-4">
     <x-panel.navigation>
         <div class="flex gap-4 w-full sm:max-w-xs">
-            <x-ui.links.link :link="__('default')" wire:navigate href="{{ route('admin.products.users.add') }}" :title="__('Add New User')" class="font-medium rounded-md whitespace-nowrap" />
+            <x-ui.links.link :link="__('default')" wire:navigate href="{{ route('admin.users.add') }}" :title="__('Add New User')" class="font-medium rounded-md whitespace-nowrap" />
             <x-ui.form.select :for="__('type')" :title="__('Account Type')" wire:model.live="type" class="w-full">
                 @foreach ($roles as $role)
                     <x-ui.form.option wire:key="role-{{ $role->id }}" :content="$role->name" value="{{ $role->id }}" />
                 @endforeach
             </x-ui.form.select>
         </div>
-        <x-ui.form.input type="search" :for="__('search')" wire:model.live="search" type="search" :placeholder="__('Search subscriber...')" class="sm:max-w-xs" />
+        <x-ui.form.input type="search" :for="__('search')" wire:model.live="search" :placeholder="__('Search subscriber...')" class="sm:max-w-xs" />
     </x-panel.navigation>
     <x-ui.table>
         <x-ui.table.head>

@@ -23,7 +23,7 @@ class EditUnit extends Component
         $this->authorize('admin');
         $this->validate([
             'name' => ['required', 'string', 'max:48', 'unique:' . Unit::class . ',name,' . $this->unit->id],
-            'code' => ['required', 'max:3', 'alpha', 'regex:/^[A-Z]+$/', 'unique:' . Unit::class . ',code,' . $this->unit->id],
+            'code' => ['required', 'max:3', 'alpha', 'uppercase', 'max:3', 'unique:' . Unit::class . ',code,' . $this->unit->id],
         ]);
         if ($this->unit->status !== 'deleted') {
             try {

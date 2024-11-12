@@ -22,9 +22,9 @@
                         <span class="material-symbols-outlined">account_circle</span>
                         <span>My Profile</span>
                     </a>
-                    <a wire:navigate href="" class="flex items-center gap-4 px-3 py-1.5 w-full hover:bg-gray-200 dark:hover:bg-gray-500 dark:hover:text-white">
-                        <span class="material-symbols-outlined">manage_accounts</span>
-                        <span>Profile Settings</span>
+                    <a wire:navigate href="{{ route('admin.users.latest_activities') }}" class="flex items-center gap-4 px-3 py-1.5 w-full hover:bg-gray-200 dark:hover:bg-gray-500 dark:hover:text-white">
+                        <span class="material-symbols-outlined">local_activity</span>
+                        <span>My Last Activities</span>
                     </a>
                     <button type="button" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="flex items-center w-full gap-4 px-3 py-1.5 hover:bg-gray-200 dark:hover:bg-gray-500 dark:hover:text-white">
                         <span class="material-symbols-outlined">power_settings_new</span>

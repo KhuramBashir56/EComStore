@@ -15,7 +15,7 @@
     </x-panel.navigation>
     <x-ui.table>
         <x-ui.table.head>
-            <x-ui.table.th :content="__('logo')" />
+            <x-ui.table.th :content="__('thumbnail')" />
             <x-ui.table.th :content="__('Category Name')" />
             <x-ui.table.th :content="__('Status')" />
             <x-ui.table.th :content="__('Action')" class="text-center" />

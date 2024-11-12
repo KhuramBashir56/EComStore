@@ -17,7 +17,7 @@ class AddNewUnit extends Component
         $this->authorize('admin');
         $this->validate([
             'name' => ['required', 'string', 'max:48', 'unique:' . Unit::class . ',name'],
-            'code' => ['required', 'max:3', 'alpha', 'regex:/^[A-Z]+$/', 'unique:' . Unit::class . ',code'],
+            'code' => ['required', 'max:3', 'alpha', 'uppercase', 'max:3', 'unique:' . Unit::class . ',code'],
         ]);
         try {
             DB::transaction(function () {
