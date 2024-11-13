@@ -20,18 +20,18 @@
                 @endforelse
             </x-ui.form.select>
         </x-ui.form.label>
-        <x-ui.form.label :title="__('SubCategory Thumbnail')" :for="__('thumbnail')">
+        <x-ui.form.label :title="__('Sub Category Thumbnail')" :for="__('thumbnail')">
             <x-ui.form.input-file :for="__('thumbnail')" :size="__('512 KB')" wire:model="thumbnail" required accept="image/*" class="rounded-md" />
         </x-ui.form.label>
-        <x-ui.form.label :title="__('SubCategory Keywords')" :for="__('keywords')" class="sm:col-span-2">
+        <x-ui.form.label :title="__('Sub Category Keywords')" :for="__('keywords')" class="sm:col-span-2">
             <livewire:panel.components.keyword-input />
         </x-ui.form.label>
-        <x-ui.form.label :title="__('SubCategory Description')" :for="__('description')" class="sm:col-span-2">
-            <x-ui.form.textarea :for="__('description')" wire:model="description" maxlength="155" required placeholder="{{ __('SubCategory Description') }}" class="rounded-md" />
+        <x-ui.form.label :title="__('Sub Category Description')" :for="__('description')" class="sm:col-span-2">
+            <x-ui.form.textarea :for="__('description')" wire:model="description" maxlength="155" required placeholder="{{ __('Sub Category Description') }}" class="rounded-md" />
         </x-ui.form.label>
         <div class="flex justify-end gap-4 mt-4 sm:col-span-2">
             <x-ui.buttons.outline-button type="button" :button="__('red')" wire:click="cancel" wire:confirm="Are you sure you want to delete this form data?" :title="__('Cancel')" class="rounded-md" />
-            <x-ui.buttons.button type="button" :button="__('green')" wire:click="saveSubCategory" :title="__('Save')" class="rounded-md" />
+            <x-ui.buttons.button type="button" :button="__('green')" wire:click="saveSub Category" :title="__('Save')" class="rounded-md" />
         </div>
     </x-ui.card>
 </section>

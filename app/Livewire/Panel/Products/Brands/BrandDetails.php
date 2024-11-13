@@ -16,7 +16,10 @@ class BrandDetails extends Component
     {
         $this->authorize('admin');
         if ($brand && $brand->status !== 'deleted') {
-            $this->brand = $brand;
+            $this->brand = $brand->load([
+                'categories.category:id,name',
+                'categories:id,category_id,name',
+            ]);
         } else {
             $this->dispatch('alert', type: 'warning', message: 'This brand already deleted you can not edit it.');
             $this->redirectRoute('admin.products.brands.list', navigate: true);
@@ -92,6 +95,25 @@ class BrandDetails extends Component
             $this->dispatch('alert', type: 'warning', message: 'This brand already deleted.');
         }
     }
+
+    public function removeCategory($category)
+    {
+        $this->authorize('admin');
+        if ($this->brand->status !== 'deleted') {
+            try {
+                DB::transaction(function () use ($category) {
+                    $this->brand->categories()->detach($category);
+                    ActivityLog::activity($this->brand->id, 'delete', 'Product Brand', 'Removed Sub Category');
+                });
+                $this->dispatch('alert', type: 'success', message: 'Category removed successfully');
+            } catch (\Throwable $th) {
+                $this->dispatch('alert', type: 'error', message: 'Something went wrong please try again.');
+            }
+        } else {
+            $this->dispatch('alert', type: 'warning', message: 'This brand already deleted you can not remove category.');
+        }
+    }
+
 
     #[Layout('components.layouts.panel')]
     public function render()

@@ -100,9 +100,7 @@ class BrandsList extends Component
     #[Layout('components.layouts.panel')]
     public function render()
     {
-        if (empty($this->range)) {
-            $this->range = 25;
-        }
+        $this->range = $this->range ?? 25;
         return view('livewire.panel.products.brands.brands-list', [
             'brands' => Brand::where('status', '!=', 'deleted')->whereAny(['name', 'keywords', 'description'], 'LIKE', $this->search . '%')->select('id', 'name', 'logo', 'status')->orderBy('name')->paginate($this->range),
         ]);

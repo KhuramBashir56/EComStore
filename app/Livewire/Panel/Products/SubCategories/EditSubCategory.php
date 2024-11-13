@@ -88,7 +88,7 @@ class EditSubCategory extends Component
     public function render()
     {
         return view('livewire.panel.products.sub-categories.edit-sub-category', [
-            'categories' => Category::where('status', 'published')->select('id', 'name')->get(),
+            'categories' => Category::where('status', 'published')->select('id', 'name')->orderBy('name')->get(),
         ]);
     }
 }

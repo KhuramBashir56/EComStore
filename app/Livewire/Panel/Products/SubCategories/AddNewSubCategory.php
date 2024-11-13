@@ -67,7 +67,7 @@ class AddNewSubCategory extends Component
     public function render()
     {
         return view('livewire.panel.products.sub-categories.add-new-sub-category', [
-            'categories' => Category::where('status', 'published')->select('id', 'name')->get(),
+            'categories' => Category::where('status', 'published')->select('id', 'name')->orderBy('name')->get(),
         ]);
     }
 }

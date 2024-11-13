@@ -11,7 +11,7 @@
                 <x-ui.form.option :content="__('500')" value="500" />
             </x-ui.form.select>
         </div>
-        <x-ui.form.input type="search" wire:model.live.debounce.500ms="search" :for="__('search')" placeholder="{{ __('Search unit...') }}" class="sm:max-w-xs" />
+        <x-ui.form.input type="search" wire:model.live.debounce.500ms="search" :for="__('search')" placeholder="{{ __('Search brand...') }}" class="sm:max-w-xs" />
     </x-panel.navigation>
     <x-ui.table>
         <x-ui.table.head>

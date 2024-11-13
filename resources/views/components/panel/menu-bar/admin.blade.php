@@ -6,7 +6,7 @@
 <x-panel.menu-bar.menu-item href="{{ route('admin.products.brands.list') }}" :title="__('Brands')" :icon="__('brand_family')" :active="__('admin.products.brands.*')" />
 <x-panel.menu-bar.menu-item href="{{ route('admin.products.categories.list') }}" :title="__('Categories')" :icon="__('category')" :active="__('admin.products.categories.*')" />
 <x-panel.menu-bar.menu-item href="{{ route('admin.products.sub_categories.list') }}" :title="__('Sub Categories')" :icon="__('linked_services')" :active="__('admin.products.sub_categories.*')" />
-<x-panel.menu-bar.menu-item href="{{ route('dashboard') }}" :title="__('Products')" :icon="__('widgets')" :active="__('category')" />
+<x-panel.menu-bar.menu-item href="{{ route('admin.products.list') }}" :title="__('Products')" :icon="__('widgets')" :active="__('admin.products.list admin.products.add_product.* admin.products.edit_product.*')" />
 <x-panel.menu-bar.menu-item href="{{ route('admin.products.units') }}" :title="__('Units')" :icon="__('bia')" :active="__('admin.products.units')" />
 {{-- <x-panel.menu-bar.heading :title="__('Reports')" />
 <x-panel.menu-bar.menu-item href="{{ route('dashboard') }}" :title="__('Invoices')" :icon="__('receipt_long')" :active="__('category')" />

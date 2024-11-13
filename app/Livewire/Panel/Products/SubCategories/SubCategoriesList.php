@@ -98,9 +98,7 @@ class SubCategoriesList extends Component
     #[Layout('components.layouts.panel')]
     public function render()
     {
-        if (empty($this->range)) {
-            $this->range = 25;
-        }
+        $this->range = $this->range ?? 25;
         return view('livewire.panel.products.sub-categories.sub-categories-list', [
             'categories' => SubCategory::where('status', '!=', 'deleted')->with(['category:id,name'])->select('id', 'category_id', 'name', 'thumbnail', 'status')->orderBy('name')->paginate($this->range),
         ]);

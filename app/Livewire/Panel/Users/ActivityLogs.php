@@ -40,8 +40,11 @@ class ActivityLogs extends Component
         if (!empty($this->from) && !empty($this->to)) {
             $from = Carbon::parse($this->from)->startOfDay();
             $to = Carbon::parse($this->to)->endOfDay();
-            $activities = $activities->whereBetween('last_activity', [$from, $to]);
+        } else {
+            $from = Carbon::now()->subDays(7)->startOfDay();
+            $to = Carbon::now()->endOfDay();
         }
+        $activities = $activities->whereBetween('last_activity', [$from, $to]);
         return view('livewire.panel.users.activity-logs', [
             'activities' => $activities->paginate($this->range),
             'subjects' => ActivityLog::activities()
