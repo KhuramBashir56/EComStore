@@ -13,9 +13,16 @@ class AddBrands extends Component
 {
     public $category, $search;
 
-    public function mount(SubCategory $category)
+    public function mount($category)
     {
-        $this->category = $category;
+        $this->authorize('admin');
+        $category = SubCategory::where('status', '!=', 'deleted')->where('ref_id', $category)->select('id', 'ref_id', 'category_id', 'status')->first();
+        if ($category && $category->status !== 'deleted') {
+            $this->category = $category;
+        } else {
+            $this->dispatch('alert', type: 'warning', message: 'Record not found.');
+            $this->redirectRoute('admin.products.sub_categories.list', navigate: true);
+        }
     }
 
     public function addBrand($brand)

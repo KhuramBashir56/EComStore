@@ -12,16 +12,17 @@ class BrandDetails extends Component
 {
     public $brand;
 
-    public function mount(Brand $brand)
+    public function mount($brand)
     {
         $this->authorize('admin');
-        if ($brand && $brand->status !== 'deleted') {
-            $this->brand = $brand->load([
-                'categories.category:id,name',
-                'categories:id,category_id,name',
-            ]);
+        $brand = Brand::where('status', '!=', 'deleted')->where('ref_id', $brand)->with([
+            'categories.category:id,name',
+            'categories:id,category_id,name',
+        ])->select('id', 'ref_id', 'name', 'keywords', 'description', 'logo', 'status', 'updated_at')->first();
+        if ($brand) {
+            $this->brand = $brand;
         } else {
-            $this->dispatch('alert', type: 'warning', message: 'This brand already deleted you can not edit it.');
+            $this->dispatch('alert', type: 'warning', message: 'Record not found.');
             $this->redirectRoute('admin.products.brands.list', navigate: true);
         }
     }
@@ -66,16 +67,6 @@ class BrandDetails extends Component
         }
     }
 
-    public function editBrand()
-    {
-        $this->authorize('admin');
-        if ($this->brand->status !== 'deleted') {
-            $this->redirectRoute('admin.products.brands.edit', ['brand' => $this->brand->id], navigate: true);
-        } else {
-            $this->dispatch('alert', type: 'warning', message: 'This brand already deleted you can not edit it.');
-        }
-    }
-
     public function deleteBrand()
     {
         $this->authorize('admin');
@@ -88,6 +79,7 @@ class BrandDetails extends Component
                     ActivityLog::activity($this->brand->id, 'delete', 'Product Brand', NULL);
                 });
                 $this->dispatch('alert', type: 'success', message: 'Brand deleted successfully');
+                $this->redirectRoute('admin.products.brands.list', navigate: true);
             } catch (\Throwable $th) {
                 $this->dispatch('alert', type: 'error', message: 'Something went wrong please try again.');
             }

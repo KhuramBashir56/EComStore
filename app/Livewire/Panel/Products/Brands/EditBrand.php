@@ -17,17 +17,18 @@ class EditBrand extends Component
 
     public $brand, $name, $logo, $old_logo, $keywords, $description;
 
-    public function mount(Brand $brand)
+    public function mount($brand)
     {
         $this->authorize('admin');
-        if ($brand && $brand->status !== 'deleted') {
+        $brand = Brand::where('status', '!=', 'deleted')->where('ref_id', $brand)->select('id', 'ref_id', 'name', 'logo', 'keywords', 'description', 'status')->first();
+        if ($brand) {
             $this->brand = $brand;
             $this->name = $brand->name;
             $this->old_logo = $brand->logo;
             $this->keywords = explode(', ', $brand->keywords);
             $this->description = $brand->description;
         } else {
-            $this->dispatch('alert', type: 'warning', message: 'This brand already deleted you can not edit it.');
+            $this->dispatch('alert', type: 'warning', message: 'Record not found.');
             $this->cancel();
         }
     }

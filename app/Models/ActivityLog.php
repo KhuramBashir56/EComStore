@@ -41,7 +41,8 @@ class ActivityLog extends Model
             'Product Unit',
             'Product Brand',
             'Product Category',
-            'Product Sub Category'
+            'Product Sub Category',
+            'Product'
         ];
     }
 }

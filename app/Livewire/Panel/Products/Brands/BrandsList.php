@@ -17,9 +17,10 @@ class BrandsList extends Component
 
     public $range = 25;
 
-    public function unPublishBrand(Brand $brand)
+    public function unPublishBrand($brand)
     {
         $this->authorize('admin');
+        $brand = Brand::where('status', '!=', 'deleted')->where('ref_id', $brand)->select('id', 'status')->first();
         if ($brand && $brand->status === 'published') {
             try {
                 DB::transaction(function () use ($brand) {
@@ -33,13 +34,14 @@ class BrandsList extends Component
                 $this->dispatch('alert', type: 'error', message: 'Something went wrong please try again.');
             }
         } else {
-            $this->dispatch('alert', type: 'warning', message: 'This brand already unpublished.');
+            $this->dispatch('alert', type: 'warning', message: 'Record not found.');
         }
     }
 
-    public function publishBrand(Brand $brand)
+    public function publishBrand($brand)
     {
         $this->authorize('admin');
+        $brand = Brand::where('status', '!=', 'deleted')->where('ref_id', $brand)->select('id', 'status')->first();
         if ($brand && $brand->status === 'unpublished') {
             try {
                 DB::transaction(function () use ($brand) {
@@ -53,33 +55,14 @@ class BrandsList extends Component
                 $this->dispatch('alert', type: 'error', message: 'Something went wrong please try again.');
             }
         } else {
-            $this->dispatch('alert', type: 'warning', message: 'This brand already published.');
+            $this->dispatch('alert', type: 'warning', message: 'Record not found.');
         }
     }
 
-    public function viewBrand(Brand $brand)
+    public function deleteBrand($brand)
     {
         $this->authorize('admin');
-        if ($brand && $brand->status !== 'deleted') {
-            $this->redirectRoute('admin.products.brands.details', ['brand' => $brand->id], navigate: true);
-        } else {
-            $this->dispatch('alert', type: 'warning', message: 'This brand already deleted you cannot view it.');
-        }
-    }
-
-    public function editBrand(Brand $brand)
-    {
-        $this->authorize('admin');
-        if ($brand && $brand->status !== 'deleted') {
-            $this->redirectRoute('admin.products.brands.edit', ['brand' => $brand->id], navigate: true);
-        } else {
-            $this->dispatch('alert', type: 'warning', message: 'This brand already deleted you cannot edit it.');
-        }
-    }
-
-    public function deleteBrand(Brand $brand)
-    {
-        $this->authorize('admin');
+        $brand = Brand::where('status', '!=', 'deleted')->where('ref_id', $brand)->select('id', 'status')->first();
         if ($brand && $brand->status !== 'deleted') {
             try {
                 DB::transaction(function () use ($brand) {
@@ -93,7 +76,7 @@ class BrandsList extends Component
                 $this->dispatch('alert', type: 'error', message: 'Something went wrong please try again.');
             }
         } else {
-            $this->dispatch('alert', type: 'warning', message: 'This brand already deleted.');
+            $this->dispatch('alert', type: 'warning', message: 'Record not found.');
         }
     }
 
@@ -102,7 +85,7 @@ class BrandsList extends Component
     {
         $this->range = $this->range ?? 25;
         return view('livewire.panel.products.brands.brands-list', [
-            'brands' => Brand::where('status', '!=', 'deleted')->whereAny(['name', 'keywords', 'description'], 'LIKE', $this->search . '%')->select('id', 'name', 'logo', 'status')->orderBy('name')->paginate($this->range),
+            'brands' => Brand::where('status', '!=', 'deleted')->whereAny(['name', 'keywords', 'description'], 'LIKE', $this->search . '%')->select('id', 'ref_id', 'name', 'logo', 'status')->orderBy('name')->paginate($this->range),
         ]);
     }
 }

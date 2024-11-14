@@ -17,10 +17,11 @@ class EditCategory extends Component
 
     public $category, $name, $thumbnail, $old_thumbnail, $keywords, $description;
 
-    public function mount(Category $category)
+    public function mount($category)
     {
         $this->authorize('admin');
-        if ($category && $category->status !== 'deleted') {
+        $category = Category::where('status', '!=', 'deleted')->where('ref_id', $category)->select('id', 'name', 'description', 'keywords', 'thumbnail')->first();
+        if ($category) {
             $this->category = $category;
             $this->name = $category->name;
             $this->old_thumbnail = $category->thumbnail;

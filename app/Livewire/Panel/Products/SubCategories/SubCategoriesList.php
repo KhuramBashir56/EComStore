@@ -17,9 +17,10 @@ class SubCategoriesList extends Component
 
     public $range = 25;
 
-    public function unPublishCategory(SubCategory $category)
+    public function unPublishSubCategory($category)
     {
         $this->authorize('admin');
+        $category = SubCategory::where('status', '!=', 'deleted')->where('ref_id', $category)->select('id', 'status')->first();
         if ($category && $category->status === 'published') {
             try {
                 DB::transaction(function () use ($category) {
@@ -33,13 +34,14 @@ class SubCategoriesList extends Component
                 $this->dispatch('alert', type: 'error', message: 'Something went wrong please try again.');
             }
         } else {
-            $this->dispatch('alert', type: 'warning', message: 'This sub category already unpublished.');
+            $this->dispatch('alert', type: 'warning', message: 'Record not found.');
         }
     }
 
-    public function publishCategory(SubCategory $category)
+    public function publishSubCategory($category)
     {
         $this->authorize('admin');
+        $category = SubCategory::where('status', '!=', 'deleted')->where('ref_id', $category)->select('id', 'status')->first();
         if ($category && $category->status === 'unpublished') {
             try {
                 DB::transaction(function () use ($category) {
@@ -53,34 +55,15 @@ class SubCategoriesList extends Component
                 $this->dispatch('alert', type: 'error', message: 'Something went wrong please try again.');
             }
         } else {
-            $this->dispatch('alert', type: 'warning', message: 'This sub category already published.');
+            $this->dispatch('alert', type: 'warning', message: 'Record not found.');
         }
     }
 
-    public function viewCategory(SubCategory $category)
+    public function deleteSubCategory($category)
     {
         $this->authorize('admin');
+        $category = SubCategory::where('status', '!=', 'deleted')->where('ref_id', $category)->select('id', 'status')->first();
         if ($category && $category->status !== 'deleted') {
-            $this->redirectRoute('admin.products.sub_categories.details', ['category' => $category->id], navigate: true);
-        } else {
-            $this->dispatch('alert', type: 'warning', message: 'This sub category is deleted.');
-        }
-    }
-
-    public function editCategory(SubCategory $category)
-    {
-        $this->authorize('admin');
-        if ($category && $category->status !== 'deleted') {
-            $this->redirectRoute('admin.products.sub_categories.edit', ['category' => $category->id], navigate: true);
-        } else {
-            $this->dispatch('alert', type: 'warning', message: 'This sub category is deleted.');
-        }
-    }
-
-    public function deleteCategory(SubCategory $category)
-    {
-        $this->authorize('admin');
-        if ($category && $category->status === 'unpublished') {
             try {
                 DB::transaction(function () use ($category) {
                     $category->status = 'deleted';
@@ -90,7 +73,7 @@ class SubCategoriesList extends Component
                 });
                 $this->dispatch('alert', type: 'success', message: 'Sub Category deleted successfully');
             } catch (\Throwable $th) {
-                $this->dispatch('alert', type: 'error', message: 'Something went wrong please try again.');
+                $this->dispatch('alert', type: 'warning', message: 'Record not found.');
             }
         }
     }
@@ -100,7 +83,7 @@ class SubCategoriesList extends Component
     {
         $this->range = $this->range ?? 25;
         return view('livewire.panel.products.sub-categories.sub-categories-list', [
-            'categories' => SubCategory::where('status', '!=', 'deleted')->with(['category:id,name'])->select('id', 'category_id', 'name', 'thumbnail', 'status')->orderBy('name')->paginate($this->range),
+            'categories' => SubCategory::where('status', '!=', 'deleted')->with(['category:id,name'])->select('id', 'ref_id', 'category_id', 'name', 'thumbnail', 'status')->orderBy('name')->paginate($this->range),
         ]);
     }
 }

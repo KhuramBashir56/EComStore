@@ -13,9 +13,16 @@ class AddCategories extends Component
 {
     public $brand, $search;
 
-    public function mount(Brand $brand)
+    public function mount($brand)
     {
-        $this->brand = $brand;
+        $this->authorize('admin');
+        $brand = Brand::where('status', '!=', 'deleted')->where('ref_id', $brand)->select('id', 'ref_id', 'name','status')->first();
+        if ($brand) {
+            $this->brand = $brand;
+        } else {
+            $this->dispatch('alert', type: 'warning', message: 'Record not found.');
+            $this->redirectRoute('admin.products.brands.list', navigate: true);
+        }
     }
 
     public function addCategory($category)

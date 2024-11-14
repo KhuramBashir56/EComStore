@@ -6,20 +6,20 @@
             <x-ui.links.link :link="__('default')" wire:navigate href="{{ route('admin.products.brands.add') }}" :title="__('Add New Brand')" class="font-medium whitespace-nowrap rounded-md" />
         </div>
     </x-panel.navigation>
-    <x-ui.card class="w-full rounded-xl p-4 sm:grid-cols-2">
+    <div class="w-full grid sm:grid-cols-2">
         <div class="sm:col-span-2 relative">
             <x-ui.links.icon-link :link="__('default')" href="{{ asset(config('filesystems.storage') . $brand->logo) }}" target="_blank" :icon="__('open_in_new')" :title="__('Open Image in New Tab')" class="font-medium rounded-md absolute top-4 left-4" />
             <x-thumbnail :url="asset(config('filesystems.storage') . $brand->logo)" class="w-full sm:max-w-56 aspect-square" />
         </div>
         <div class="flex flex-wrap gap-4 mt-4 mb-2 sm:col-span-2">
-            <x-ui.links.link :link="__('default')" wire:navigate href="{{ route('admin.products.brands.add_categories', ['brand' => $brand->id]) }}" :title="__('Add Category')" class="rounded-md" />
+            <x-ui.links.link :link="__('default')" wire:navigate href="{{ route('admin.products.brands.add_categories', ['brand' => $brand->ref_id]) }}" :title="__('Add Category')" class="rounded-md" />
             @if ($brand->status === 'published')
                 <x-ui.buttons.button type="button" :button="__('red')" wire:click="unPublishBrand" wire:confirm="Are you sure you want to unpublish this brand?" :title="__('Un Publish')" class="rounded-md" />
             @else
                 <x-ui.buttons.button type="button" :button="__('green')" wire:click="publishBrand" wire:confirm="Are you sure you want to publish this brand?" :title="__('Publish')" class="rounded-md" />
             @endif
-            <x-ui.buttons.button type="button" :button="__('blue')" wire:click="editBrand" :title="__('Edit')" class="rounded-md" />
-            <x-ui.buttons.button type="button" :button="__('red')" wire:click="deleteBrand" :title="__('Delete')" class="rounded-md" />
+            <x-ui.links.link :link="__('blue')" wire:navigate href="{{ route('admin.products.brands.edit', ['brand' => $brand->ref_id]) }}" :title="__('Edit')" class="rounded-md" />
+            <x-ui.buttons.button type="button" :button="__('red')" wire:click="deleteBrand" wire:confirm="Are you sure you want to delete this brand?" :title="__('Delete')" class="rounded-md" />
         </div>
         <x-ui.inline-heading :title="__('Name')" :content="$brand->name" class="sm:col-span-2" />
         <x-ui.inline-heading :title="__('Status')" class="uppercase">
@@ -38,7 +38,7 @@
                 <x-ui.badge :badge="__('default')" :content="$keyword" class="uppercase" />
             @endforeach
         </x-ui.inline-heading>
-        <x-ui.inline-heading :title="__('Description')" :content="$brand->name" class="sm:col-span-2" />
+        <x-ui.inline-heading :title="__('Description')" :content="$brand->description" class="sm:col-span-2" />
         <x-ui.table class="w-full sm:col-span-2 mt-3">
             <x-ui.table.head>
                 <x-ui.table.th :content="__('ID')" />
@@ -63,5 +63,5 @@
                 @endforelse
             </x-ui.table.body>
         </x-ui.table>
-    </x-ui.card>
+    </div>
 </section>

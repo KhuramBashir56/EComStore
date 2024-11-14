@@ -75,8 +75,6 @@ return new class extends Migration
             $table->integer('stock')->nullable();
             $table->double('price', 8, 2)->nullable();
             $table->double('discount', 8, 2)->nullable();
-            $table->string('color_names', 255)->nullable();
-            $table->string('color_cods', 255)->nullable();
             $table->text('content')->nullable();
             $table->string('thumbnail', 255)->nullable();
             $table->enum('type', ['new', 'out_of_stock', 'special', 'best_selling', 'top_rated', 'offer'])->default('new');
@@ -90,6 +88,26 @@ return new class extends Migration
             $table->integer('rejected')->default(0);
             $table->timestamps(6);
         });
+
+        Schema::create('product_images', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('product_id')->constrained('products')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('path', 255);
+        });
+
+        Schema::create('product_colors', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('product_id')->constrained('products')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('name', 48);
+            $table->string('primary', 7);
+            $table->string('secondary', 7)->nullable();
+        });
+
+        Schema::create('product_color_images', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('product_id')->constrained('products')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('path', 255);
+        });
     }
 
     public function down(): void
@@ -100,5 +118,8 @@ return new class extends Migration
         Schema::dropIfExists('sub_categories');
         Schema::dropIfExists('sub_categories_brands');
         Schema::dropIfExists('products');
+        Schema::dropIfExists('product_images');
+        Schema::dropIfExists('product_colors');
+        Schema::dropIfExists('product_color_images');
     }
 };

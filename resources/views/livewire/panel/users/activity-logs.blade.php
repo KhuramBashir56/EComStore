@@ -2,13 +2,15 @@
 <section class="grid gap-4">
     <x-panel.navigation class="items-start">
         <div class="w-full sm:max-w-sm flex 2xs:flex-row flex-col gap-4 items-start">
-            <x-ui.buttons.icon-button type="button" :button="__('default')" wire:click="resetFiller" :title="__('Reset Filters')" :icon="__('refresh')" class="rounded-md p-2 mt-[1px]" />
-            <x-ui.form.select :for="__('subject')" :title="__('All Activities')" wire:model.live="subject" class="w-full">
-                @foreach ($subjects as $subject)
-                    <x-ui.form.option :content="$subject" value="{{ $subject }}" />
-                @endforeach
-            </x-ui.form.select>
-            <x-ui.form.select :for="__('range')" :title="__('Records Range')" wire:model.live="range" class="w-full">
+            <div class="flex gap-4 w-full">
+                <x-ui.buttons.icon-button type="button" :button="__('default')" wire:click="resetFiller" :title="__('Reset Filters')" :icon="__('refresh')" class="rounded-md p-2 mt-[1px]" />
+                <x-ui.form.select :for="__('subject')" :title="__('All Activities')" wire:model.live="subject" class="w-full">
+                    @foreach ($subjects as $subject)
+                        <x-ui.form.option :content="$subject" value="{{ $subject }}" />
+                    @endforeach
+                </x-ui.form.select>
+            </div>
+            <x-ui.form.select :for="__('range')" :title="__('Records Range')" wire:model.live="range" class="2xs:max-w-20 w-full">
                 <x-ui.form.option :content="__('25')" value="25" />
                 <x-ui.form.option :content="__('50')" value="50" />
                 <x-ui.form.option :content="__('100')" value="100" />
@@ -34,10 +36,8 @@
     <x-ui.table>
         <x-ui.table.head>
             <x-ui.table.th :content="__('date / time')" />
-            <x-ui.table.th :content="__('Subject')" />
-            <x-ui.table.th :content="__('type')" />
-            <x-ui.table.th :content="__('description')" />
-            <x-ui.table.th :content="__('ip address')" />
+            <x-ui.table.th :content="__('Activity / Type / description')" />
+            <x-ui.table.th :content="__('ip address / user agent')" />
         </x-ui.table.head>
         <x-ui.table.body>
             @forelse($activities as $activity)
@@ -45,11 +45,17 @@
                     <x-ui.table.td>
                         <p>{{ $activity->last_activity->format('d M Y') }}</p>
                         <p>{{ $activity->last_activity->format('h:i:s A') }}</p>
+                        <p>{{ $activity->last_activity->diffForHumans(null, true, true) . ' ago' }}</p>
                     </x-ui.table.td>
-                    <x-ui.table.td :content="$activity->subject" />
-                    <x-ui.table.td :content="$activity->type" />
-                    <x-ui.table.td :content="$activity->description ?? 'N/A'" />
-                    <x-ui.table.td :content="$activity->ip_address ?? 'N/A'" />
+                    <x-ui.table.td>
+                        <p>{{ $activity->subject }}</p>
+                        <p class="capitalize">{{ $activity->type }}</p>
+                        <p>{{ $activity->description }}</p>
+                    </x-ui.table.td>
+                    <x-ui.table.td>
+                        <p>{{ $activity->ip_address }}</p>
+                        <p>{{ $activity->user_agent }}</p>
+                    </x-ui.table.td>
                 </x-ui.table.tr>
             @empty
                 <x-ui.table.tr>

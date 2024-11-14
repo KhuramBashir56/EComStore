@@ -1,7 +1,7 @@
 <x-slot:title>{{ __('Assign Categories to ') . $brand->name }}</x-slot>
 <section class="grid gap-4">
     <x-panel.navigation>
-        <x-ui.links.link :link="__('default')" wire:navigate href="{{ route('admin.products.brands.details', ['brand' => $brand->id]) }}" :title="__('Go Back')" class="font-medium whitespace-nowrap rounded-md" />
+        <x-ui.links.link :link="__('default')" wire:navigate href="{{ route('admin.products.brands.details', ['brand' => $brand->ref_id]) }}" :title="__('Go Back')" class="font-medium whitespace-nowrap rounded-md" />
         <x-ui.form.input type="search" wire:model.live.debounce.500ms="search" :for="__('search')" placeholder="{{ __('Search category...') }}" class="sm:max-w-xs" />
     </x-panel.navigation>
     <x-ui.table>

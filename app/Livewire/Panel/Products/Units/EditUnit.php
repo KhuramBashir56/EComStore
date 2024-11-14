@@ -13,9 +13,15 @@ class EditUnit extends Component
 
     public function mount(Unit $unit)
     {
-        $this->unit = $unit;
-        $this->name = $unit->name;
-        $this->code = $unit->code;
+        $this->authorize('admin');
+        if ($unit && $unit->status !== 'deleted') {
+            $this->unit = $unit;
+            $this->name = $unit->name;
+            $this->code = $unit->code;
+        } else {
+            $this->dispatch('alert', type: 'warning', message: 'Unit already deleted you can not edit it.');
+            $this->cancel();
+        }
     }
 
     public function updateUnit()
@@ -33,13 +39,15 @@ class EditUnit extends Component
                     $this->unit->update();
                     ActivityLog::activity($this->unit->id, 'update', 'Product Unit', NULL);
                 });
-                $this->cancel();
                 $this->dispatch('alert', type: 'success', message: 'Unit updated successfully');
+                $this->cancel();
             } catch (\Throwable $th) {
                 $this->dispatch('alert', type: 'error', message: 'Something went wrong please try again.');
+                $this->cancel();
             }
         } else {
             $this->dispatch('alert', type: 'warning', message: 'Unit already deleted you can not update it.');
+            $this->cancel();
         }
     }
 

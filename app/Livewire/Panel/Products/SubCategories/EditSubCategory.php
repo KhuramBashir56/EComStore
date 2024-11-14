@@ -18,9 +18,10 @@ class EditSubCategory extends Component
 
     public $subCategory, $category, $name, $thumbnail, $old_thumbnail, $keywords, $description;
 
-    public function mount(SubCategory $category)
+    public function mount($category)
     {
         $this->authorize('admin');
+        $category = SubCategory::where('status', '!=', 'deleted')->where('ref_id', $category)->select('id', 'category_id', 'name', 'thumbnail', 'keywords', 'description', 'status')->first();
         if ($category && $category->status !== 'deleted') {
             $this->subCategory = $category;
             $this->category = $category->category->id;

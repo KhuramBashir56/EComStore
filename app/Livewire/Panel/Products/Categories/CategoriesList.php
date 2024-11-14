@@ -17,9 +17,10 @@ class CategoriesList extends Component
 
     public $range = 25;
 
-    public function unPublishCategory(Category $category)
+    public function unPublishCategory($category)
     {
         $this->authorize('admin');
+        $category = Category::where('status', '!=', 'deleted')->where('ref_id', $category)->select('id', 'status')->first();
         if ($category && $category->status === 'published') {
             try {
                 DB::transaction(function () use ($category) {
@@ -33,13 +34,14 @@ class CategoriesList extends Component
                 $this->dispatch('alert', type: 'error', message: 'Something went wrong please try again.');
             }
         } else {
-            $this->dispatch('alert', type: 'warning', message: 'This category already unpublished.');
+            $this->dispatch('alert', type: 'warning', message: 'Record not found.');
         }
     }
 
-    public function publishCategory(Category $category)
+    public function publishCategory($category)
     {
         $this->authorize('admin');
+        $category = Category::where('status', '!=', 'deleted')->where('ref_id', $category)->select('id', 'status')->first();
         if ($category && $category->status === 'unpublished') {
             try {
                 DB::transaction(function () use ($category) {
@@ -53,33 +55,14 @@ class CategoriesList extends Component
                 $this->dispatch('alert', type: 'error', message: 'Something went wrong please try again.');
             }
         } else {
-            $this->dispatch('alert', type: 'warning', message: 'This category already published.');
+            $this->dispatch('alert', type: 'warning', message: 'Record not found.');
         }
     }
 
-    public function viewCategory(Category $category)
+    public function deleteCategory($category)
     {
         $this->authorize('admin');
-        if ($category && $category->status !== 'deleted') {
-            $this->redirectRoute('admin.products.categories.details', ['category' => $category->id], navigate: true);
-        } else {
-            $this->dispatch('alert', type: 'warning', message: 'This category already deleted.');
-        }
-    }
-
-    public function editCategory(Category $category)
-    {
-        $this->authorize('admin');
-        if ($category && $category->status !== 'deleted') {
-            $this->redirectRoute('admin.products.categories.edit', ['category' => $category->id], navigate: true);
-        } else {
-            $this->dispatch('alert', type: 'warning', message: 'This category already deleted.');
-        }
-    }
-
-    public function deleteCategory(Category $category)
-    {
-        $this->authorize('admin');
+        $category = Category::where('status', '!=', 'deleted')->where('ref_id', $category)->select('id', 'status')->first();
         if ($category && $category->status !== 'deleted') {
             try {
                 DB::transaction(function () use ($category) {
@@ -93,7 +76,7 @@ class CategoriesList extends Component
                 $this->dispatch('alert', type: 'error', message: 'Something went wrong please try again.');
             }
         } else {
-            $this->dispatch('alert', type: 'warning', message: 'This category already deleted.');
+            $this->dispatch('alert', type: 'warning', message: 'Record not found.');
         }
     }
 
@@ -102,7 +85,7 @@ class CategoriesList extends Component
     {
         $this->range = $this->range ?? 25;
         return view('livewire.panel.products.categories.categories-list', [
-            'categories' => Category::where('status', '!=', 'deleted')->whereAny(['name', 'keywords', 'description'], 'LIKE', $this->search . '%')->select('id', 'name', 'thumbnail', 'status')->orderBy('name')->paginate($this->range)
+            'categories' => Category::where('status', '!=', 'deleted')->whereAny(['name', 'keywords', 'description'], 'LIKE', $this->search . '%')->select('id', 'ref_id', 'name', 'thumbnail', 'status')->orderBy('name')->paginate($this->range)
         ]);
     }
 }

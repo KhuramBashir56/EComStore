@@ -8,9 +8,12 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class ActivityLogs extends Component
 {
+    use WithPagination;
+
     #[Validate(['required'])]
     public $from;
 
@@ -31,7 +34,7 @@ class ActivityLogs extends Component
     #[Layout('components.layouts.panel')]
     public function render()
     {
-        $query = ActivityLog::where('user_id', Auth::user()->id)->select('subject', 'type', 'description', 'ip_address', 'last_activity')->latest('last_activity');
+        $query = ActivityLog::where('user_id', Auth::user()->id)->select('subject', 'type', 'description', 'ip_address', 'user_agent', 'last_activity')->latest('last_activity');
         $this->range = $this->range ?? 25;
         $activities = clone $query;
         if (!empty($this->subject)) {

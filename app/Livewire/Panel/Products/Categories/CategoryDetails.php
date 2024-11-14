@@ -12,13 +12,14 @@ class CategoryDetails extends Component
 {
     public $category;
 
-    public function mount(Category $category)
+    public function mount($category)
     {
         $this->authorize('admin');
-        if ($category && $category->status !== 'deleted') {
+        $category = Category::where('status', '!=', 'deleted')->where('ref_id', $category)->select('id', 'ref_id', 'name', 'description', 'keywords', 'thumbnail', 'status', 'updated_at')->first();
+        if ($category) {
             $this->category = $category;
         } else {
-            $this->dispatch('alert', type: 'warning', message: 'This category already deleted you can not edit it.');
+            $this->dispatch('alert', type: 'warning', message: 'Record not found.');
             $this->redirectRoute('admin.products.categories', navigate: true);
         }
     }
@@ -60,16 +61,6 @@ class CategoryDetails extends Component
             }
         } else {
             $this->dispatch('alert', type: 'warning', message: 'This category already published.');
-        }
-    }
-
-    public function editCategory()
-    {
-        $this->authorize('admin');
-        if ($this->category->status !== 'deleted') {
-            $this->redirectRoute('admin.products.categories.edit', ['category' => $this->category->id], navigate: true);
-        } else {
-            $this->dispatch('alert', type: 'warning', message: 'This category already deleted.');
         }
     }
 
