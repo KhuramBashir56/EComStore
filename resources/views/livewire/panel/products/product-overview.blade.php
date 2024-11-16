@@ -46,7 +46,7 @@
         <x-ui.form.label :title="__('Short Description')" :for="__('description')" class="sm:col-span-2">
             <x-ui.form.textarea :for="__('description')" wire:model="description" maxlength="155" required placeholder="{{ __('Short Description') }}" class="rounded-md" />
         </x-ui.form.label>
-        <div class="flex justify-end gap-4 mt-4 sm:col-span-2">
+        <div class="flex justify-end gap-4 mt-2 sm:col-span-2">
             <x-ui.buttons.outline-button type="button" :button="__('red')" wire:click="cancel" wire:confirm="Are you sure you want to delete this form data?" :title="__('Cancel')" class="rounded-md" />
             <x-ui.buttons.button type="button" :button="__('green')" wire:click="saveProductOverview" :title="__('Save & Next')" class="rounded-md" />
         </div>

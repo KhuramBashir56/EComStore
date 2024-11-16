@@ -106,6 +106,7 @@ return new class extends Migration
         Schema::create('product_color_images', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')->constrained('products')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('name', 48);
             $table->string('path', 255);
         });
     }

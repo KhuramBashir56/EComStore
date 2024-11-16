@@ -50,7 +50,7 @@
                     <x-ui.table.td>
                         <p>{{ $activity->subject }}</p>
                         <p class="capitalize">{{ $activity->type }}</p>
-                        <p>{{ $activity->description }}</p>
+                        <p>{{ $activity->description ?? 'N/A' }}</p>
                     </x-ui.table.td>
                     <x-ui.table.td>
                         <p>{{ $activity->ip_address }}</p>

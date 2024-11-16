@@ -8,7 +8,7 @@
         <x-ui.table.head>
             <x-ui.table.th :content="__('Name')" />
             <x-ui.table.th :content="__('Short Code')" />
-            <x-ui.table.th :content="__('Status')" class="text-center" />
+            <x-ui.table.th :content="__('Status')" />
             <x-ui.table.th :content="__('Action')" class="text-center" />
         </x-ui.table.head>
         <x-ui.table.body>

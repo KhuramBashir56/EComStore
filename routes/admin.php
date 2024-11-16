@@ -31,9 +31,11 @@ Route::middleware(['auth', 'active', 'can:admin'])->name('admin.')->prefix('admi
         Route::prefix('add-product')->name('add_product.')->group(function () {
             Route::get('overview', PRODUCTS\ProductOverview::class)->name('overview');
             Route::get('overview/{product}', PRODUCTS\EditProductOverview::class)->name('edit_overview');
+            Route::get('pricing-and-colors/{product}', PRODUCTS\PricingAndColors::class)->name('pricing_and_colors');
         });
         Route::prefix('edit-product')->name('edit_product.')->group(function () {
             Route::get('overview/{product}', PRODUCTS\EditProductOverview::class)->name('overview');
+            Route::get('pricing-and-colors/{product}', PRODUCTS\PricingAndColors::class)->name('pricing_and_colors');
         });
     });
     Route::prefix('users')->name('users.')->group(function () {

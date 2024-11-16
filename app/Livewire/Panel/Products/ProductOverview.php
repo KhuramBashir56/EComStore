@@ -48,7 +48,7 @@ class ProductOverview extends Component
             'subCategory' => ['required', 'integer', 'exists:' . SubCategory::class . ',id'],
             'brand' => ['required', 'integer', 'exists:' . Brand::class . ',id'],
             'keywords' => ['required', 'array'],
-            'short_description' => ['required', 'string', 'max:155'],
+            'description' => ['required', 'string', 'max:155'],
         ]);
         try {
             DB::transaction(function () {
@@ -60,12 +60,11 @@ class ProductOverview extends Component
                 $product->sub_category_id = $this->subCategory;
                 $product->brand_id = $this->brand;
                 $product->keywords = implode(', ', $this->keywords);
-                $product->description = $this->description;
+                $product->short_description = $this->description;
                 $product->save();
-                ActivityLog::activity($product->id, 'create', 'Product', NULL);
+                ActivityLog::activity($product->id, 'create', 'Product', 'New product overview created');
+                $this->redirectRoute('admin.products.add_product.pricing_and_colors', ['product' => $product->ref_id], navigate: true);
             });
-            $this->dispatch('alert', type: 'success', message: 'Product created successfully.');
-            $this->cancel();
         } catch (\Throwable $th) {
             $this->dispatch('alert', type: 'error', message: 'Something went wrong please try again.');
         }
@@ -85,7 +84,6 @@ class ProductOverview extends Component
     {
         return view('livewire.panel.products.product-overview', [
             'categories' => Category::where('status', 'published')->select('id', 'name')->orderBy('name')->get(),
-
         ]);
     }
 }

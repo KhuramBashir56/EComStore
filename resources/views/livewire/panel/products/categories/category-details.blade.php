@@ -18,7 +18,7 @@
                 <x-ui.buttons.button type="button" :button="__('green')" wire:click="publishCategory" wire:confirm="Are you sure you want to publish this category?" :title="__('Publish')" class="rounded-md" />
             @endif
             <x-ui.links.link :link="__('blue')" wire:navigate href="{{ route('admin.products.categories.edit', ['category' => $category->ref_id]) }}" :title="__('Edit')" class="rounded-md" />
-            <x-ui.buttons.button type="button" :button="__('red')" wire:click="deleteCategory" :title="__('Delete')" class="rounded-md" />
+            <x-ui.buttons.button type="button" :button="__('red')" wire:click="deleteCategory" wire:confirm="Are you sure you want to delete this category?" :title="__('Delete')" class="rounded-md" />
         </div>
         <x-ui.inline-heading :title="__('Name')" :content="$category->name" class="sm:col-span-2" />
         <x-ui.inline-heading :title="__('Status')" class="uppercase">
