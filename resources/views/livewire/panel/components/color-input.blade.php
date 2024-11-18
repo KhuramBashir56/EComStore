@@ -18,7 +18,7 @@
                             </x-ui.form.label>
                             <x-ui.form.label :title="__('Color Picker')" :for="__('primaryColor')">
                                 <div class="flex gap-4">
-                                    <x-ui.form.input type="color" wire:model.live="primaryColor" :for="__('primaryColor')" class="rounded-md p-0 h-11 min-w-8" />
+                                    <x-ui.form.input type="color" wire:model.live="primaryColor" :for="__('primaryColor')" class="rounded-md p-0 h-[42px] min-w-8" />
                                     <x-ui.buttons.button :button="__('default')" wire:click="saveSingleColor" :title="__('Add Color')" class="font-medium rounded-md whitespace-nowrap" />
                                 </div>
                             </x-ui.form.label>
@@ -34,13 +34,13 @@
                         <x-ui.form.label :title="__('Primary Color')" :for="__('primaryColor')" class="flex flex-col">
                             <div class="flex flex-col 2xs:flex-row gap-4">
                                 <x-ui.form.input type="text" wire:model.live.debounce.1000ms="primaryCode" :for="__('primaryCode')" x-bind:value="$wire.primaryColor" maxlength="7" placeholder="{{ __('Hexadecimal Code') }}" class="rounded-md" />
-                                <x-ui.form.input type="color" wire:model.live="primaryColor" :for="__('primaryColor')" class="rounded-md p-0 h-11 min-w-8" />
+                                <x-ui.form.input type="color" wire:model.live="primaryColor" :for="__('primaryColor')" class="rounded-md p-0 h-[42px] min-w-8" />
                             </div>
                         </x-ui.form.label>
                         <x-ui.form.label :title="__('Secondary Color')" :for="__('secondaryColor')">
                             <div class="flex flex-col 2xs:flex-row gap-4">
                                 <x-ui.form.input type="text" wire:model.live.debounce.1000ms="secondaryCode" :for="__('secondaryCode')" x-bind:value="$wire.secondaryColor" maxlength="7" placeholder="{{ __('Hexadecimal Code') }}" class="rounded-md" />
-                                <x-ui.form.input type="color" wire:model.live="secondaryColor" :for="__('secondaryColor')" class="rounded-md p-0 h-11 min-w-8" />
+                                <x-ui.form.input type="color" wire:model.live="secondaryColor" :for="__('secondaryColor')" class="rounded-md p-0 h-[42px] min-w-8" />
                             </div>
                         </x-ui.form.label>
                         <x-ui.buttons.button :button="__('default')" wire:click="saveCombinationColor" :title="__('Add Color')" class="font-medium rounded-md whitespace-nowrap w-full my-4" />

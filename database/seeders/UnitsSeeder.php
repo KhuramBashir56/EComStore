@@ -21,6 +21,10 @@ class UnitsSeeder extends Seeder
                 'code' => 'G',
             ],
             [
+                'name' => 'Milligram',
+                'code' => 'MG',
+            ],
+            [
                 'name' => 'Liter',
                 'code' => 'L',
             ],

@@ -32,10 +32,14 @@ Route::middleware(['auth', 'active', 'can:admin'])->name('admin.')->prefix('admi
             Route::get('overview', PRODUCTS\ProductOverview::class)->name('overview');
             Route::get('overview/{product}', PRODUCTS\EditProductOverview::class)->name('edit_overview');
             Route::get('pricing-and-colors/{product}', PRODUCTS\PricingAndColors::class)->name('pricing_and_colors');
+            Route::get('content-and-description/{product}', PRODUCTS\ContentAndDescription::class)->name('content_and_description');
+            Route::get('gallery/{product}', PRODUCTS\Gallery::class)->name('gallery');
         });
         Route::prefix('edit-product')->name('edit_product.')->group(function () {
             Route::get('overview/{product}', PRODUCTS\EditProductOverview::class)->name('overview');
             Route::get('pricing-and-colors/{product}', PRODUCTS\PricingAndColors::class)->name('pricing_and_colors');
+            Route::get('content-and-description/{product}', PRODUCTS\ContentAndDescription::class)->name('content_and_description');
+            Route::get('gallery/{product}', PRODUCTS\Gallery::class)->name('gallery');
         });
     });
     Route::prefix('users')->name('users.')->group(function () {

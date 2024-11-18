@@ -73,8 +73,8 @@ return new class extends Migration
             $table->foreignId('unit_id')->nullable()->constrained('units')->cascadeOnDelete()->cascadeOnUpdate();
             $table->integer('quantity')->nullable();
             $table->integer('stock')->nullable();
-            $table->double('price', 8, 2)->nullable();
             $table->double('discount', 8, 2)->nullable();
+            $table->double('price', 8, 2)->nullable();
             $table->text('content')->nullable();
             $table->string('thumbnail', 255)->nullable();
             $table->enum('type', ['new', 'out_of_stock', 'special', 'best_selling', 'top_rated', 'offer'])->default('new');

@@ -84,7 +84,7 @@ class EditProductOverview extends Component
                     $this->product->keywords = implode(', ', $this->keywords);
                     $this->product->short_description = $this->description;
                     $this->product->update();
-                    ActivityLog::activity($this->product->id, 'update', 'Product', 'Overview');
+                    ActivityLog::activity($this->product->id, 'create', 'Product', 'Overview');
                     $this->redirectRoute('admin.products.add_product.pricing_and_colors', ['product' => $this->product->ref_id], navigate: true);
                 });
             } catch (\Throwable $th) {
