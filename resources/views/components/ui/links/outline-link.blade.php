@@ -11,4 +11,4 @@
         $color = 'text-blue-700 dark:text-blue-600 hover:text-white dark:hover:text-white hover:bg-blue-700 dark:hover:bg-blue-600 border-blue-700 dark:border-blue-600';
     }
 @endphp
-<a {{ $attributes->merge(['class' => 'flex justify-center items-center px-3 border py-1.5 transition-colors duration-500 ' . $color]) }}>{{ $title ?? $slot }}</a>
+<a {{ $attributes->merge(['class' => 'flex justify-center items-center px-3 border py-1.5 hover:transition-colors hover:duration-500 ' . $color]) }}>{{ $title ?? $slot }}</a>

@@ -1,6 +1,6 @@
 @props(['title', 'active', 'icon'])
 <li class="main-item list-none">
-    <button type="button" class="flex px-4 py-1.5 items-center justify-between w-full transition-colors duration-150 {{ request()->routeIs(explode(' ', $active)) ? 'bg-primary-500 text-white' : 'hover:bg-primary-600 hover:text-white' }}" title="{{ $title }}">
+    <button type="button" class="flex px-4 py-1.5 items-center justify-between w-full hover:transition-colors hover:duration-500 {{ request()->routeIs(explode(' ', $active)) ? 'bg-primary-500 text-white' : 'hover:bg-primary-600 hover:text-white' }}" title="{{ $title }}">
         <span class="flex items-center gap-3">
             <span class="material-symbols-outlined text-3xl">{{ $icon }}</span>
             <span class="font-semibold text-md">{{ $title }}</span>

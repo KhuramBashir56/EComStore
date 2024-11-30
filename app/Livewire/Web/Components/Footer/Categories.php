@@ -26,7 +26,9 @@ class Categories extends Component
     public function render()
     {
         return view('livewire.web.components.footer.categories', [
-            'categories' => Category::where('status', 'published')->select('id', 'ref_id', 'name')->orderBy('name')->get()
+            'categories' => Category::where('status', 'published')->with(['products' => function ($product) {
+                $product->where('status', 'published')->select('id', 'category_id');
+            }])->select('id', 'ref_id', 'name')->orderBy('name')->get()
         ]);
     }
 }

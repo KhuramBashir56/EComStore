@@ -17,42 +17,44 @@
         <x-ui.table.head>
             <x-ui.table.th :content="__('thumbnail')" />
             <x-ui.table.th :content="__('Product Name')" />
+            <x-ui.table.th :content="__('Stock')" />
             <x-ui.table.th :content="__('Status')" />
             <x-ui.table.th :content="__('Action')" class="text-center" />
         </x-ui.table.head>
         <x-ui.table.body>
-            {{-- @forelse($categories as $category) --}}
-            {{-- <x-ui.table.tr wire:key="product-{{ $category->id }}">
-                <x-ui.table.td>
-                    <x-thumbnail :url="asset(config('filesystems.storage') . $category->thumbnail)" class="w-24 aspect-square" />
-                </x-ui.table.td>
-                <x-ui.table.td :content="$category->name" />
-                <x-ui.table.td class="text-center">
-                    @if ($category->status === 'published')
-                        <x-ui.badge :badge="__('green')" :content="$category->status" class="uppercase" />
-                    @else
-                        <x-ui.badge :badge="__('red')" :content="$category->status" class="uppercase" />
-                    @endif
-                </x-ui.table.td>
-                <x-ui.table.td class="text-center">
-                    <x-ui.table.actions>
-                        @if ($category->status === 'published')
-                            <x-ui.buttons.transparent-icon-button type="button" :button="__('red')" wire:click="unPublishCategory({{ $category->id }})" wire:confirm="Are you sure you want to unpublish this category?" :title="__('Un Publish')" :icon="__('visibility_off')" class="rounded-md" />
+            @forelse($products as $product)
+                <x-ui.table.tr wire:key="product-{{ $product->id }}">
+                    <x-ui.table.td>
+                        <x-thumbnail :url="$product->thumbnail ? asset(config('filesystems.storage') . $product->thumbnail) : asset('assets/images/card-image.svg')" class="w-24 aspect-square" />
+                    </x-ui.table.td>
+                    <x-ui.table.td :content="$product->name" />
+                    <x-ui.table.td :content="$product->stock" />
+                    <x-ui.table.td class="text-center">
+                        @if ($product->status === 'published')
+                            <x-ui.badge :badge="__('green')" :content="$product->status" class="uppercase" />
                         @else
-                            <x-ui.buttons.transparent-icon-button type="button" :button="__('green')" wire:click="publishCategory({{ $category->id }})" wire:confirm="Are you sure you want to publish this category?" :title="__('Publish')" :icon="__('visibility')" class="rounded-md" />
+                            <x-ui.badge :badge="__('red')" :content="$product->status" class="uppercase" />
                         @endif
-                        <x-ui.buttons.transparent-icon-button type="button" :button="__('default')" wire:click="viewCategory({{ $category->id }})" :title="__('View Details')" :icon="__('info')" class="rounded-md" />
-                        <x-ui.buttons.transparent-icon-button type="button" :button="__('blue')" wire:click="editCategory({{ $category->id }})" :title="__('Edit')" :icon="__('edit')" class="rounded-md" />
-                        <x-ui.buttons.transparent-icon-button type="button" :button="__('red')" wire:click="deleteCategory({{ $category->id }})" wire:confirm="Are you sure you want to delete this category?" :title="__('Delete')" :icon="__('delete')" class="rounded-md" />
-                    </x-ui.table.actions>
-                </x-ui.table.td>
-            </x-ui.table.tr> --}}
-            {{-- @empty
+                    </x-ui.table.td>
+                    <x-ui.table.td class="text-center">
+                        <x-ui.table.actions>
+                            @if ($product->status === 'published')
+                                <x-ui.buttons.transparent-icon-button type="button" :button="__('red')" wire:click="unPublishCategory({{ $product->id }})" wire:confirm="Are you sure you want to unpublish this category?" :title="__('Un Publish')" :icon="__('visibility_off')" class="rounded-md" />
+                            @else
+                                <x-ui.buttons.transparent-icon-button type="button" :button="__('green')" wire:click="publishCategory({{ $product->id }})" wire:confirm="Are you sure you want to publish this category?" :title="__('Publish')" :icon="__('visibility')" class="rounded-md" />
+                            @endif
+                            <x-ui.buttons.transparent-icon-button type="button" :button="__('default')" wire:click="viewCategory({{ $product->id }})" :title="__('View Details')" :icon="__('info')" class="rounded-md" />
+                            <x-ui.buttons.transparent-icon-button type="button" :button="__('blue')" wire:click="editCategory({{ $product->id }})" :title="__('Edit')" :icon="__('edit')" class="rounded-md" />
+                            <x-ui.buttons.transparent-icon-button type="button" :button="__('red')" wire:click="deleteCategory({{ $product->id }})" wire:confirm="Are you sure you want to delete this category?" :title="__('Delete')" :icon="__('delete')" class="rounded-md" />
+                        </x-ui.table.actions>
+                    </x-ui.table.td>
+                </x-ui.table.tr>
+            @empty
                 <x-ui.table.tr>
                     <x-ui.table.td colspan="4" :content="__('Categories Not Found...')" class="text-center text-xl" />
                 </x-ui.table.tr>
-            @endforelse --}}
+            @endforelse
         </x-ui.table.body>
     </x-ui.table>
-    {{-- {{ $categories->links('components.ui.table.pagination') }} --}}
+    {{ $products->links('components.ui.table.pagination') }}
 </section>

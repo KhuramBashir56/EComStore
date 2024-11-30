@@ -11,10 +11,10 @@
     </x-panel.navigation>
     <x-ui.card class="grid gap-4 rounded-xl">
         <div wire:ignore class="relative">
-            <textarea name="content" id="content" wire:model="content"></textarea>
+            <textarea name="description" id="description" wire:model="description"></textarea>
             <span id="counter" class="absolute bottom-[2px] right-4"></span>
         </div>
-        @error('content')
+        @error('description')
             <x-ui.form.input-error :message="$message" />
         @enderror
         @error('text_count')
@@ -33,7 +33,7 @@
     <script type="text/javascript">
         const theme = localStorage.getItem('theme') || 'light';
         const themeColor = theme === 'dark' ? '#9ca3af' : '#ffa666';
-        CKEDITOR.replace('content', {
+        CKEDITOR.replace('description', {
             height: 400,
             uiColor: themeColor,
             toolbar: [{
@@ -63,20 +63,22 @@
             ],
             format_tags: 'p;h2;h3;h4;pre',
         });
-        CKEDITOR.instances.content.on('change', function() {
-            const content = CKEDITOR.instances.content.getData();
+        CKEDITOR.instances.description.on('change', function() {
+            const description = CKEDITOR.instances.description.getData();
             const tempElement = document.createElement('div');
-            tempElement.innerHTML = content;
+            tempElement.innerHTML = description;
             const plainText = tempElement.textContent || tempElement.innerText || ' ';
             const alphabeticCount = (plainText.match(/[a-zA-Z0-9]/g) || []).length;
             const counter = document.getElementById('counter');
-            counter.innerHTML = `${alphabeticCount}/5000`;
+            if (counter) {
+                counter.innerHTML = `${alphabeticCount}/5000`;
+            }
             window.plainText = plainText;
         });
         document.getElementById('saveProductDescription').addEventListener('click', function() {
-            const content = CKEDITOR.instances.content.getData();
-            @this.set('content', content);
-            @this.set('text_count', (content.match(/[a-zA-Z0-9]/g) || []).join(''));
+            const description = CKEDITOR.instances.description.getData();
+            @this.set('description', description);
+            @this.set('text_count', (description.match(/[a-zA-Z0-9]/g) || []).join(''));
         });
     </script>
 @endscript

@@ -12,7 +12,7 @@ class Gallery extends Component
 
     public function mount($product)
     {
-        $product = Product::where('ref_id', $product)->select('id', 'ref_id', 'unit_id', 'content', 'status')->first();
+        $product = Product::where('ref_id', $product)->select('id', 'ref_id', 'unit_id', 'description', 'status')->first();
         if ($product && $product->status !== 'deleted') {
             if ($product->unit_id === NULL) {
                 $this->redirectRoute('admin.products.add_product.pricing_and_colors', ['product' => $product->ref_id], navigate: true);

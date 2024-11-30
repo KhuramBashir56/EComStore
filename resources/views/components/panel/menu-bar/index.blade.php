@@ -1,7 +1,7 @@
 <aside id="mainMenu" class="sm:max-w-xs max-w-sm w-full h-full xl:static absolute top-0 left-0 xl:translate-x-0 -translate-x-full transition-transform duration-500 bg-secondary-500 dark:bg-gray-800">
     <nav class="mainMenu flex flex-col h-full overflow-y-auto divide-y divide-secondary-100 dark:divide-gray-600">
         <div x-data="{ userMenu: false }" class="p-3 flex items-center cursor-pointer gap-4 bg-primary-500 dark:bg-secondary-500 relative">
-            <button type="button" onclick="menuRToggle()" class="sidebarToggle absolute xl:hidden flex justify-center items-center top-3 right-3 rounded-md text-white hover:bg-secondary-700 dark:hover:bg-gray-700 transition-colors duration-500"title="Close Menu">
+            <button type="button" onclick="menuRToggle()" class="sidebarToggle absolute xl:hidden flex justify-center items-center top-3 right-3 rounded-md text-white hover:bg-secondary-700 dark:hover:bg-gray-700 hover:transition-colors hover:duration-500"title="Close Menu">
                 <span class="material-symbols-outlined">close</span>
             </button>
             <div class="relative size-16 shrink-0 border-2 border-white rounded-full">
@@ -13,7 +13,7 @@
                 <h6 class="text-base text-white">{{ Auth::user()->name }}</h6>
                 <p class="text-xs dark:text-secondary-50 text-gray-300">{{ Auth()->user()->email }}</p>
             </div>
-            <button type="button" x-on:click="userMenu = !userMenu" x-on:click.away="userMenu = false" class="absolute flex justify-center items-center bottom-3 right-3 rounded-md text-white hover:bg-primary-700 dark:hover:bg-secondary-700 transition-colors duration-500" title="More Options">
+            <button type="button" x-on:click="userMenu = !userMenu" x-on:click.away="userMenu = false" class="absolute flex justify-center items-center bottom-3 right-3 rounded-md text-white hover:bg-primary-700 dark:hover:bg-secondary-700 hover:transition-colors hover:duration-500" title="More Options">
                 <span class="material-symbols-outlined">keyboard_arrow_down</span>
             </button>
             <div x-show="userMenu" x-collapse class="z-10 absolute top-full right-1.5 w-full max-w-56 bg-white rounded-lg dark:bg-gray-700" style="display: none;">

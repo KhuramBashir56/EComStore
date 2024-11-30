@@ -11,4 +11,4 @@
         $color = 'bg-blue-300 text-blue-900 dark:bg-blue-900 dark:text-blue-200';
     }
 @endphp
-<span {{ $attributes->merge(['class' => 'text-sm flex items-center w-fit gap-3 font-medium me-2 px-2.5 py-0.5 rounded-md transition-colors duration-500 ' . $color]) }}>{{ $content ?? $slot }}</span>
+<span {{ $attributes->merge(['class' => 'text-sm flex items-center w-fit gap-3 font-medium me-2 px-2.5 py-0.5 rounded-md hover:transition-colors hover:duration-500 ' . $color]) }}>{{ $content ?? $slot }}</span>

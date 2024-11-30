@@ -1,7 +1,7 @@
 <x-slot:title>{{ __('News Letter Subscribers') }}</x-slot>
 <section class="grid gap-4">
     <x-panel.navigation>
-        <x-ui.form.select :for="__('range')" :title="__('Records Range')" wire:model.live="range" class="w-full sm:max-w-xs">
+        <x-ui.form.select :for="__('range')" :title="__('Records Range')" wire:model.live="range" class="2xs:max-w-20 w-full">
             <x-ui.form.option :content="__('25')" value="25" />
             <x-ui.form.option :content="__('50')" value="50" />
             <x-ui.form.option :content="__('100')" value="100" />

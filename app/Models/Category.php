@@ -12,4 +12,9 @@ class Category extends Model
     {
         return strtoupper(substr(md5(uniqid(mt_rand(), true)), 0, 20));
     }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'category_id', 'id');
+    }
 }

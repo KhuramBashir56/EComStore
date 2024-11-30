@@ -1,5 +1,5 @@
 <header class="p-4 text-white dark:text-gray-200 bg-secondary-500 dark:bg-gray-800 flex items-center gap-4 shadow-xl z-10 print:hidden">
-    <button onclick="menuRToggle()" class="sidebarToggle xl:hidden flex justify-center items-center p-3 hover:bg-secondary-700 dark:hover:bg-gray-700 transition-colors duration-500" title="Toggle Menu">
+    <button onclick="menuRToggle()" class="sidebarToggle xl:hidden flex justify-center items-center p-3 hover:bg-secondary-700 dark:hover:bg-gray-700 hover:transition-colors hover:duration-500" title="Toggle Menu">
         <span class="material-symbols-outlined">menu</span>
     </button>
     <div class="flex justify-center items-center gap-4">
@@ -19,7 +19,7 @@
             </div>
         </div>
     </label>
-    <a wire:navigate href="" title="User Messages" class="flex justify-center items-center p-3 hover:bg-secondary-700 dark:hover:bg-gray-700 transition-colors duration-500 relative rounded-full">
+    <a wire:navigate href="" title="User Messages" class="flex justify-center items-center p-3 hover:bg-secondary-700 dark:hover:bg-gray-700 hover:transition-colors hover:duration-500 relative rounded-full">
         <span class="material-symbols-outlined">mail</span>
         <span class="absolute top-1 right-1 size-4 rounded-full bg-primary-500 text-white dark:bg-secondary-500 text-[11px] flex justify-center items-center">45</span>
     </a>

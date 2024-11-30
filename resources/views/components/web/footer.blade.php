@@ -12,15 +12,15 @@
                 <div class="w-full">
                     <x-web.heading :title="__('Most Useable Links')" class="text-xl border-secondary-500" />
                     <div class="w-full divide-y divide-primary-200 dark:divide-gray-600">
-                        <a wire:navigate href="{{ route('home') }}" class="flex items-center px-3 py-2 hover:bg-secondary-500 dark:hover:bg-gray-700 transition-colors duration-500">Home</a>
-                        <a wire:navigate href="" class="flex items-center px-3 py-2 hover:bg-secondary-500 dark:hover:bg-gray-700 transition-colors duration-500">Products</a>
-                        <a wire:navigate href="{{ route('order.tracking') }}" class="flex items-center px-3 py-2 hover:bg-secondary-500 dark:hover:bg-gray-700 transition-colors duration-500">Track Order</a>
-                        <a wire:navigate href="" class="flex items-center px-3 py-2 hover:bg-secondary-500 dark:hover:bg-gray-700 transition-colors duration-500">About Us</a>
-                        <a wire:navigate href="{{ route('contact') }}" class="flex items-center px-3 py-2 hover:bg-secondary-500 dark:hover:bg-gray-700 transition-colors duration-500">Contact Us</a>
-                        <a wire:navigate href="" class="flex items-center px-3 py-2 hover:bg-secondary-500 dark:hover:bg-gray-700 transition-colors duration-500">FAQs</a>
+                        <a wire:navigate href="{{ route('home') }}" class="flex items-center px-3 py-2 hover:bg-secondary-500 dark:hover:bg-gray-700 hover:transition-colors hover:duration-500">Home</a>
+                        <a wire:navigate href="" class="flex items-center px-3 py-2 hover:bg-secondary-500 dark:hover:bg-gray-700 hover:transition-colors hover:duration-500">Products</a>
+                        <a wire:navigate href="{{ route('order.tracking') }}" class="flex items-center px-3 py-2 hover:bg-secondary-500 dark:hover:bg-gray-700 hover:transition-colors hover:duration-500">Track Order</a>
+                        <a wire:navigate href="" class="flex items-center px-3 py-2 hover:bg-secondary-500 dark:hover:bg-gray-700 hover:transition-colors hover:duration-500">About Us</a>
+                        <a wire:navigate href="{{ route('contact') }}" class="flex items-center px-3 py-2 hover:bg-secondary-500 dark:hover:bg-gray-700 hover:transition-colors hover:duration-500">Contact Us</a>
+                        <a wire:navigate href="" class="flex items-center px-3 py-2 hover:bg-secondary-500 dark:hover:bg-gray-700 hover:transition-colors hover:duration-500">FAQs</a>
                         @guest
-                            <a wire:navigate href="{{ route('login') }}" class="flex items-center px-3 py-2 hover:bg-secondary-500 dark:hover:bg-gray-700 transition-colors duration-500">Login</a>
-                            <a wire:navigate href="{{ route('register') }}" class="flex items-center px-3 py-2 hover:bg-secondary-500 dark:hover:bg-gray-700 transition-colors duration-500">Register</a>
+                            <a wire:navigate href="{{ route('login') }}" class="flex items-center px-3 py-2 hover:bg-secondary-500 dark:hover:bg-gray-700 hover:transition-colors hover:duration-500">Login</a>
+                            <a wire:navigate href="{{ route('register') }}" class="flex items-center px-3 py-2 hover:bg-secondary-500 dark:hover:bg-gray-700 hover:transition-colors hover:duration-500">Register</a>
                         @endguest
                     </div>
                 </div>
@@ -32,10 +32,10 @@
                     <div class="w-full">
                         <x-web.heading :title="__('Legal Links')" class="text-xl border-secondary-500" />
                         <div class="w-full divide-y divide-primary-200 dark:divide-gray-600">
-                            <a wire:navigate href="" class="flex items-center px-3 py-2 hover:bg-secondary-500 dark:hover:bg-gray-700 transition-colors duration-500">Privacy Policy</a>
-                            <a wire:navigate href="" class="flex items-center px-3 py-2 hover:bg-secondary-500 dark:hover:bg-gray-700 transition-colors duration-500">Terms & Conditions</a>
-                            <a wire:navigate href="" class="flex items-center px-3 py-2 hover:bg-secondary-500 dark:hover:bg-gray-700 transition-colors duration-500">Return Policy & Method</a>
-                            <a wire:navigate href="" class="flex items-center px-3 py-2 hover:bg-secondary-500 dark:hover:bg-gray-700 transition-colors duration-500">Refund Process & Policy</a>
+                            <a wire:navigate href="" class="flex items-center px-3 py-2 hover:bg-secondary-500 dark:hover:bg-gray-700 hover:transition-colors hover:duration-500">Privacy Policy</a>
+                            <a wire:navigate href="" class="flex items-center px-3 py-2 hover:bg-secondary-500 dark:hover:bg-gray-700 hover:transition-colors hover:duration-500">Terms & Conditions</a>
+                            <a wire:navigate href="" class="flex items-center px-3 py-2 hover:bg-secondary-500 dark:hover:bg-gray-700 hover:transition-colors hover:duration-500">Return Policy & Method</a>
+                            <a wire:navigate href="" class="flex items-center px-3 py-2 hover:bg-secondary-500 dark:hover:bg-gray-700 hover:transition-colors hover:duration-500">Refund Process & Policy</a>
                         </div>
                     </div>
                     <div class="w-full mt-4">

@@ -11,4 +11,4 @@
         $color = 'bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700';
     }
 @endphp
-<button {{ $attributes->merge(['class' => 'flex justify-center items-center px-3 py-1.5 text-white transition-colors duration-500 ' . $color]) }} wire:loading.attr="disabled" wire:offline.attr="disabled" wire:loading.class="cursor-wait">{{ $title ?? $slot }}</button>
+<button {{ $attributes->merge(['class' => 'flex justify-center items-center px-3 py-1.5 text-white hover:transition-colors hover:duration-500 ' . $color]) }} wire:loading.attr="disabled" wire:offline.attr="disabled" wire:loading.class="cursor-wait">{{ $title ?? $slot }}</button>

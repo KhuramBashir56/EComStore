@@ -11,6 +11,6 @@
         $color = 'bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700';
     }
 @endphp
-<a title="{{ $title }}" {{ $attributes->merge(['class' => 'flex justify-center items-center p-1 text-white transition-colors duration-500 ' . $color]) }}>
+<a title="{{ $title }}" {{ $attributes->merge(['class' => 'flex justify-center items-center p-1 text-white hover:transition-colors hover:duration-500 ' . $color]) }}>
     <span class="material-symbols-outlined">{{ $icon }}</span>
 </a>
