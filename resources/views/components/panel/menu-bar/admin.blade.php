@@ -15,6 +15,6 @@
 <x-panel.menu-bar.menu-item href="{{ route('admin.users.add') }}" :title="__('Add New Users')" :icon="__('group_add')" :active="__('admin.users.add')" />
 <x-panel.menu-bar.menu-item href="{{ route('admin.users.list') }}" :title="__('Users')" :icon="__('groups')" :active="__('admin.users.list')" />
 <x-panel.menu-bar.menu-item href="{{ route('admin.users.news_letter_subscribers') }}" :title="__('News Letter Subscribers')" :icon="__('subscriptions')" :active="__('admin.users.news_letter_subscribers')" />
-{{-- <x-panel.menu-bar.menu-item href="{{ route('dashboard') }}" :title="__('Messages')" :icon="__('mail')" :active="__('category')" />
-<x-panel.menu-bar.menu-item href="{{ route('dashboard') }}" :title="__('Departments')" :icon="__('trip_origin')" :active="__('category')" />
-<x-panel.menu-bar.menu-item href="{{ route('dashboard') }}" :title="__('Roles')" :icon="__('supervisor_account')" :active="__('category')" /> --}}
+{{-- <x-panel.menu-bar.menu-item href="{{ route('dashboard') }}" :title="__('Messages')" :icon="__('mail')" :active="__('category')" /> --}}
+<x-panel.menu-bar.menu-item href="{{ route('admin.users.departments') }}" :title="__('Departments')" :icon="__('trip_origin')" :active="__('admin.users.departments')" />
+<x-panel.menu-bar.menu-item href="{{ route('admin.users.roles') }}" :title="__('Roles')" :icon="__('supervisor_account')" :active="__('admin.users.roles')" />

@@ -7,15 +7,9 @@ use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
-use Livewire\WithPagination;
 
-class ProductsList extends Component
+class Details extends Component
 {
-    use WithPagination;
-
-    public $search;
-
-    public $range = 25;
 
     public function unPublishProduct(Product $product)
     {
@@ -74,8 +68,6 @@ class ProductsList extends Component
     #[Layout('components.layouts.panel')]
     public function render()
     {
-        return view('livewire.panel.products.products-list', [
-            'products' => Product::where('status', '!=', 'deleted')->whereAny(['name', 'keywords', 'short_description', 'description', 'thumbnail'], 'LIKE', '%' . $this->search . '%')->paginate($this->range),
-        ]);
+        return view('livewire.panel.products.details');
     }
 }

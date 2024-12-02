@@ -2,14 +2,6 @@
 <section class="grid gap-4">
     <x-panel.navigation class="items-start">
         <div class="w-full sm:max-w-sm flex 2xs:flex-row flex-col gap-4 items-start">
-            <div class="flex gap-4 w-full">
-                <x-ui.buttons.icon-button type="button" :button="__('default')" wire:click="resetFiller" :title="__('Reset Filters')" :icon="__('refresh')" class="rounded-md p-2 mt-[1px]" />
-                <x-ui.form.select :for="__('subject')" :title="__('All Activities')" wire:model.live="subject" class="w-full">
-                    @foreach ($subjects as $subject)
-                        <x-ui.form.option :content="$subject" value="{{ $subject }}" />
-                    @endforeach
-                </x-ui.form.select>
-            </div>
             <x-ui.form.select :for="__('range')" :title="__('Records Range')" wire:model.live="range" class="2xs:max-w-20 w-full">
                 <x-ui.form.option :content="__('25')" value="25" />
                 <x-ui.form.option :content="__('50')" value="50" />
@@ -17,16 +9,17 @@
                 <x-ui.form.option :content="__('250')" value="250" />
                 <x-ui.form.option :content="__('500')" value="500" />
             </x-ui.form.select>
+            <x-ui.buttons.icon-button type="button" :button="__('default')" wire:click="resetFiller" :title="__('Reset Filters')" :icon="__('refresh')" class="rounded-md p-2 mt-[1px]" />
         </div>
         <div class="w-full sm:max-w-sm flex xs:flex-row flex-col gap-4">
             <div class="w-full">
-                <x-ui.form.input type="date" :for="__('from')" wire:model="from" class="w-full" />
+                <x-ui.form.input type="date" :for="__('from')" wire:model="from" max="{{ date('Y-m-d') }}" class="w-full" onfocus="this.showPicker()" />
                 @error('from')
                     <x-ui.form.input-error :message="$message" />
                 @enderror
             </div>
             <div class="w-full">
-                <x-ui.form.input type="date" :for="__('to')" wire:model.live="to" class="w-full" />
+                <x-ui.form.input type="date" :for="__('to')" wire:model.live="to" max="{{ date('Y-m-d') }}" class="w-full" onfocus="this.showPicker()" />
                 @error('to')
                     <x-ui.form.input-error :message="$message" />
                 @enderror

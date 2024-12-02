@@ -9,7 +9,7 @@
                 @endforeach
             </x-ui.form.select>
         </div>
-        <x-ui.form.input type="search" :for="__('search')" wire:model.live="search" :placeholder="__('Search subscriber...')" class="sm:max-w-xs" />
+        <x-ui.form.input type="search" :for="__('search')" wire:model.live="search" :placeholder="__('Search user...')" class="sm:max-w-xs" />
     </x-panel.navigation>
     <x-ui.table>
         <x-ui.table.head>
@@ -41,7 +41,7 @@
                 </x-ui.table.tr>
             @empty
                 <x-ui.table.tr>
-                    <x-ui.table.td colspan="4" :content="__('Subscribers Not Found...')" class="text-center text-xl" />
+                    <x-ui.table.td colspan="4" :content="__('Users Not Found...')" class="text-center text-xl" />
                 </x-ui.table.tr>
             @endforelse
         </x-ui.table.body>

@@ -3,7 +3,7 @@
         <h2 class="md:text-4xl sm:text-3xl text-2xl font-bold text-white">Subscribe to Our Newsletter</h2>
         <p class="text-base text-white">Stay updated with the latest news, trends, and special offers. Don't miss out on our exciting updates.</p>
         <div class="w-full flex xs:flex-row flex-col gap-y-4 max-w-xl mx-auto xs:border-2 border-primary-500 dark:border-secondary-500">
-            <div class="w-full relative">
+            <div class="w-full">
                 <x-ui.form.input type="email" wire:model="email" :for="__('email')" maxlength="64" required autocomplete="off" placeholder="{{ __('Email Address') }}" />
                 @error('email')
                     <p class="text-red-500 text-xs absolute left-0 top-full bg-white w-full">{{ $message }}</p>
