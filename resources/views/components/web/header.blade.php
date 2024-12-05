@@ -20,12 +20,7 @@
                             </div>
                         </div>
                     </label>
-                    @auth
-                        <a href="{{ route('dashboard') }}" class="inline-block px-3 py-1 hover:bg-secondary-700 dark:hover:bg-gray-700 hover:transition-colors hover:duration-500">Dashboard</a>
-                    @else
-                        <a wire:navigate href="{{ route('login') }}" class="inline-block px-3 py-1 hover:bg-secondary-700 dark:hover:bg-gray-700 hover:transition-colors hover:duration-500">Login</a>
-                        <a wire:navigate href="{{ route('register') }}" class="inline-block px-3 py-1 hover:bg-secondary-700 dark:hover:bg-gray-700 hover:transition-colors hover:duration-500">Register</a>
-                    @endauth
+                    <livewire:web.components.header.auth-links />
                 </div>
             </div>
         </div>
@@ -40,17 +35,9 @@
                     <livewire:web.components.header.search-box />
                 </div>
                 <div class="md:col-start-4 xs:col-start-2 xs:row-start-1 xs:row-end-2 flex items-center xs:justify-end justify-center">
-                    <button title="My Cart" class="flex justify-center items-center p-3 hover:bg-secondary-700 dark:hover:bg-gray-700 hover:transition-colors hover:duration-500 relative rounded-full">
-                        <span class="material-symbols-outlined">shopping_cart</span>
-                        <span class="absolute top-1 right-1 size-4 rounded-full bg-primary-500 text-white dark:bg-secondary-500 text-[11px] flex justify-center items-center">45</span>
-                    </button>
-                    <button title="Wishlist" class="flex justify-center items-center p-3 hover:bg-secondary-700 dark:hover:bg-gray-700 hover:transition-colors hover:duration-500 relative rounded-full">
-                        <span class="material-symbols-outlined">favorite</span>
-                        <span class="absolute top-1 right-1 size-4 rounded-full bg-primary-500 text-white dark:bg-secondary-500 text-[11px] flex justify-center items-center">45</span>
-                    </button>
-                    <button title="Wishlist" class="flex justify-center items-center p-3 hover:bg-secondary-700 dark:hover:bg-gray-700 hover:transition-colors hover:duration-500 rounded-full">
-                        <span class="material-symbols-outlined">account_circle</span>
-                    </button>
+                    <livewire:web.components.header.buyer-cart />
+                    <livewire:web.components.header.buyer-wishlist />
+                    <livewire:web.components.header.user-profile />
                 </div>
             </div>
         </div>

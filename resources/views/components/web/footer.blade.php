@@ -1,4 +1,4 @@
-<footer class="py-8 bg-primary-500 dark:bg-gray-900 text-white dark:text-gray-200">
+<footer class="pt-16 pb-8 bg-primary-500 dark:bg-gray-900 text-white dark:text-gray-200">
     <section class="px-4">
         <div class="2xl:container mx-auto">
             <div class="grid gap-4 lg:grid-cols-4 sm:grid-cols-2 place-items-start">
@@ -18,10 +18,7 @@
                         <a wire:navigate href="" class="flex items-center px-3 py-2 hover:bg-secondary-500 dark:hover:bg-gray-700 hover:transition-colors hover:duration-500">About Us</a>
                         <a wire:navigate href="{{ route('contact') }}" class="flex items-center px-3 py-2 hover:bg-secondary-500 dark:hover:bg-gray-700 hover:transition-colors hover:duration-500">Contact Us</a>
                         <a wire:navigate href="" class="flex items-center px-3 py-2 hover:bg-secondary-500 dark:hover:bg-gray-700 hover:transition-colors hover:duration-500">FAQs</a>
-                        @guest
-                            <a wire:navigate href="{{ route('login') }}" class="flex items-center px-3 py-2 hover:bg-secondary-500 dark:hover:bg-gray-700 hover:transition-colors hover:duration-500">Login</a>
-                            <a wire:navigate href="{{ route('register') }}" class="flex items-center px-3 py-2 hover:bg-secondary-500 dark:hover:bg-gray-700 hover:transition-colors hover:duration-500">Register</a>
-                        @endguest
+                        <livewire:web.components.footer.auth-links />
                     </div>
                 </div>
                 <div class="w-full">

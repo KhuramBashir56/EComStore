@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -34,5 +35,15 @@ class User extends Authenticatable
     public function role(): BelongsTo
     {
         return $this->belongsTo(Role::class, 'role_id', 'id');
+    }
+
+    public function wishlist(): HasMany
+    {
+        return $this->hasMany(Wishlist::class, 'user_id', 'id');
+    }
+
+    public function cart(): HasMany
+    {
+        return $this->hasMany(Cart::class, 'user_id', 'id');
     }
 }

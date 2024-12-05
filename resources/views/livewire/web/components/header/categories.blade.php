@@ -3,7 +3,7 @@
         <span class="truncate w-fit uppercase font-bold">All Categories</span>
         <span class="material-symbols-outlined mt-1">expand_more</span>
     </button>
-    <ul x-show="categories" x-transition x-transition:enter.duration.500ms x-collapse class="list-none w-full absolute left-0 top-full font-medium bg-white shadow-md divide-y divide-gray-400 dark:divide-gray-700 dark:bg-gray-900 text-gray-900 dark:text-gray-200 border border-gray-400 dark:border-gray-700" style="display: none;">
+    <ul x-show="categories" x-transition x-transition:enter.duration.500ms x-collapse class="list-none w-full absolute z-40 left-0 top-full font-medium bg-white shadow-md divide-y divide-gray-400 dark:divide-gray-700 dark:bg-gray-900 text-gray-900 dark:text-gray-200 border border-gray-400 dark:border-gray-700" style="display: none;">
         @forelse ($categories as $category)
             <li wire:key="category-{{ $category->id }}" class="hover:bg-secondary-500 dark:hover:bg-gray-700 hover:text-white transition-colors duration-500">
                 <a href="" class="block px-3 py-1.5">{{ $category->name }}</a>

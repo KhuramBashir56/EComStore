@@ -33,7 +33,23 @@
         <livewire:web.components.news-letter />
         <x-web.footer />
         <x-alert-message />
+        @guest
+            <div id="login_modal_box" class="hidden absolute w-full h-full">
+                <livewire:web.components.user-login />
+            </div>
+        @endguest
     </div>
+    <script type="text/javascript">
+        var loginModalBox = document.getElementById('login_modal_box');
+        document.addEventListener('livewire:init', () => {
+            Livewire.on('openLoginModal', () => {
+                loginModalBox.classList.remove('hidden');
+            });
+            Livewire.on('closeLoginModal', () => {
+                loginModalBox.classList.add('hidden');
+            });
+        });
+    </script>
     @stack('scripts')
 </body>
 

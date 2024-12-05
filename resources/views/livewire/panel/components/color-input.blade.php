@@ -50,9 +50,9 @@
                 <div class="grid gap-x-4 sm:grid-cols-2 mb-2">
                     <div class="w-full">
                         @if ($image)
-                            <x-thumbnail :url="$image->temporaryUrl()" class="w-full max-w-36 mb-2 aspect-square" />
+                            <x-thumbnail :path="$image->temporaryUrl()" class="w-full max-w-36 mb-2 aspect-square" />
                         @else
-                            <x-thumbnail class="w-full max-w-36 mb-2 aspect-square" />
+                            <x-thumbnail :path="asset('assets/images/card-image.svg')" class="w-full max-w-36 mb-2 aspect-square" />
                         @endif
                         <x-ui.form.label :title="__('Color Name')" :for="__('name')">
                             <x-ui.form.input type="text" wire:model="name" :for="__('name')" maxlength="48" placeholder="{{ __('Color Name') }}" class="rounded-md" />
@@ -87,4 +87,3 @@
         @endforeach
     </div>
 </div>
-

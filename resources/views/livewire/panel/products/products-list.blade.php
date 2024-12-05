@@ -25,7 +25,7 @@
             @forelse($products as $product)
                 <x-ui.table.tr wire:key="product-{{ $product->id }}">
                     <x-ui.table.td>
-                        <x-thumbnail :url="$product->thumbnail ? asset(config('filesystems.storage') . $product->thumbnail) : asset('assets/images/card-image.svg')" class="w-24 aspect-square" />
+                        <x-thumbnail :alt="$product->name . ' Thumbnail'" :path="$product->thumbnail ? asset(config('filesystems.storage') . $product->thumbnail) : asset('assets/images/card-image.svg')" class="w-24 aspect-square" />
                     </x-ui.table.td>
                     <x-ui.table.td :content="$product->name" />
                     <x-ui.table.td :content="$product->stock" />
