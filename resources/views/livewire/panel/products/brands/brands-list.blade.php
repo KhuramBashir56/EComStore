@@ -24,7 +24,7 @@
             @forelse($brands as $brand)
                 <x-ui.table.tr wire:key="brand-{{ $brand->ref_id }}">
                     <x-ui.table.td>
-                        <x-thumbnail :url="asset(config('filesystems.storage') . $brand->logo)" class="w-24 aspect-square" />
+                        <x-thumbnail :alt="$brand->name . __('Brand Logo')" :path="$brand->logo ? asset(config('filesystems.storage') . $brand->logo) : asset('assets/images/card-image.svg')" class="w-24 aspect-square" />
                     </x-ui.table.td>
                     <x-ui.table.td :content="$brand->name" />
                     <x-ui.table.td class="text-center">

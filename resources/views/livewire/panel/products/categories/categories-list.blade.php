@@ -24,7 +24,7 @@
             @forelse($categories as $category)
                 <x-ui.table.tr wire:key="category-{{ $category->ref_id }}">
                     <x-ui.table.td>
-                        <x-thumbnail :alt="$category->name . ' Thumbnail'" :path=" $category->thumbnail ? asset(config('filesystems.storage') . $category->thumbnail) ? asset('assets/images/card-image.svg')" class="w-24 aspect-square" />
+                        <x-thumbnail :alt="$category->name . ' Thumbnail'" :path="$category->thumbnail ? asset(config('filesystems.storage') . $category->thumbnail) : asset('assets/images/card-image.svg')" class="w-24 aspect-square" />
                     </x-ui.table.td>
                     <x-ui.table.td :content="$category->name" />
                     <x-ui.table.td class="text-center">

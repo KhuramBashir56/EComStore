@@ -4,11 +4,11 @@
     </x-ui.modal.header>
     <x-ui.modal.body>
         <p class="mb-2 text-center text-black dark:text-gray-200">{{ __('Please enter your credentials to login your account.') }}</p>
-        <x-ui.form.label :title="__('Email')" :for="__('email')">
-            <x-ui.form.input type="email" :for="__('email')" wire:model="email" maxlength="64" autofocus required autocomplete="username" placeholder="{{ __('Email Address') }}" class="rounded-md" />
+        <x-ui.form.label :title="__('Email')" :for="__('user_email')">
+            <x-ui.form.input type="email" :for="__('user_email')" wire:model="user_email" maxlength="64" autofocus required autocomplete="username" placeholder="{{ __('Email Address') }}" class="rounded-md" />
         </x-ui.form.label>
-        <x-ui.form.label :title="__('Password')" :for="__('password')">
-            <x-ui.form.input-password :for="__('password')" wire:model="password" minlength="8" maxlength="64" required autocomplete="off" placeholder="{{ __('Password') }}" class="rounded-md" />
+        <x-ui.form.label :title="__('Password')" :for="__('user_password')">
+            <x-ui.form.input-password :for="__('user_password')" wire:model="user_password" minlength="8" maxlength="64" required autocomplete="off" placeholder="{{ __('Password') }}" class="rounded-md" />
         </x-ui.form.label>
         <div class="block text-end">
             <a wire:navigate href="{{ route('register') }}" class="text-secondary-500 hover:text-primary-600 dark:hover:text-secondary-600 hover:underline">{{ __('Forgot your password?') }}</a>

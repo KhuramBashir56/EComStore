@@ -2,6 +2,8 @@
 
 namespace App\Livewire\Web\Home;
 
+use App\Models\Brand;
+use App\Models\Product;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 

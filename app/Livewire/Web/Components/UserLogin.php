@@ -7,21 +7,21 @@ use Livewire\Component;
 
 class UserLogin extends Component
 {
-    public $email, $password, $remember_me;
+    public $user_email, $user_password, $remember_me;
 
     public function close()
     {
         $this->dispatch('closeLoginModal');
-        $this->reset(['email', 'password', 'remember_me']);
+        $this->reset(['user_email', 'user_password', 'remember_me']);
     }
 
     public function login()
     {
         $this->validate([
-            'email' => ['required', 'email', 'min:8', 'max:64', 'exists:users,email'],
-            'password' => ['required', 'min:8', 'max:24'],
+            'user_email' => ['required', 'email', 'min:8', 'max:64', 'exists:users,email'],
+            'user_password' => ['required', 'min:8', 'max:24'],
         ]);
-        if (Auth::attempt(['email' => $this->email, 'password' => $this->password], $this->remember_me)) {
+        if (Auth::attempt(['email' => $this->user_email, 'password' => $this->user_password], $this->remember_me)) {
             $this->dispatch('alert', type: 'success', message: 'Login Successful');
             $this->dispatch('updateCartCounter');
             $this->dispatch('updateWishlistCounter');
@@ -29,7 +29,7 @@ class UserLogin extends Component
             $this->close();
         } else {
             $this->dispatch('alert', type: 'error', message: 'Login Failed. Please try again with your correct credentials.');
-            $this->reset(['email', 'password', 'remember_me']);
+            $this->reset(['user_email', 'user_password', 'remember_me']);
         }
     }
 

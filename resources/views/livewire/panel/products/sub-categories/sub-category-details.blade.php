@@ -9,7 +9,7 @@
     <div class="w-full grid sm:grid-cols-2">
         <div class="sm:col-span-2 relative">
             <x-ui.links.icon-link :link="__('default')" href="{{ asset(config('filesystems.storage') . $category->thumbnail) }}" target="_blank" :icon="__('open_in_new')" :title="__('Open Image in New Tab')" class="font-medium rounded-md absolute top-4 left-4" />
-            <x-thumbnail :path="$category->thumbnail ? asset(config('filesystems.storage') . $category->thumbnail) : asset('assets/images/card-image.svg')" class="w-full sm:max-w-56 aspect-square" />
+            <x-thumbnail :alt="$category->name . __('Category Thumbnail')" :path="$category->thumbnail ? asset(config('filesystems.storage') . $category->thumbnail) : asset('assets/images/card-image.svg')" class="w-full sm:max-w-56 aspect-square" />
         </div>
         <div class="flex flex-wrap gap-4 mt-4 mb-2 sm:col-span-2">
             <x-ui.links.link :link="__('default')" wire:navigate href="{{ route('admin.products.sub_categories.add_brands', ['category' => $category->ref_id]) }}" :title="__('Add Brands')" class="rounded-md" />

@@ -1,4 +1,4 @@
 @props(['path', 'alt'])
-<div {{ $attributes->merge(['class' => 'bg-white']) }}>
-    <img src="{{ $path }}" alt="{{ $alt ?? 'image / thumbnail' }}" class="w-full h-full" loading="lazy">
+<div {{ $attributes->merge(['class' => 'bg-white shrink-0']) }}>
+    <img src="{{ $path }}" alt="{{ $alt }}" class="w-full h-full" loading="lazy">
 </div>

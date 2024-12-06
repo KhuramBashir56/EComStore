@@ -15,8 +15,8 @@ class BrandHorizontalCard extends Component
 
     public function placeholder()
     {
-        return <<<HTML
-            <article class="w-full flex items-center bg-white dark:bg-gray-800 rounded-md shadow-md group animate-pulse">
+        return <<<'HTML'
+            <div class="w-full flex items-center bg-white dark:bg-gray-800 rounded-md shadow-md group animate-pulse">
                 <div class="w-28 aspect-square bg-gray-300 dark:bg-gray-700 flex justify-center items-center">
                     <span class="material-symbols-outlined text-6xl text-white">photo</span>
                 </div>
@@ -24,7 +24,7 @@ class BrandHorizontalCard extends Component
                     <div class="bg-gray-300 dark:bg-gray-700 h-5 w-full"></div>
                     <div class="bg-gray-300 dark:bg-gray-700 h-4 w-full"></div>
                 </div>
-            </article>
+            </div>
         HTML;
     }
 

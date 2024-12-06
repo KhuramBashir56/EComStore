@@ -3,9 +3,9 @@
     <x-ui.card class="w-full rounded-xl p-4 sm:grid-cols-2">
         <div class="sm:col-span-2 mb-4">
             @if ($thumbnail)
-                <x-thumbnail :path="$thumbnail->temporaryUrl()" class="w-full sm:max-w-56 aspect-square" />
+                <x-thumbnail :alt="__('Sub Category Thumbnail')" :path="$thumbnail->temporaryUrl()" class="w-full sm:max-w-56 aspect-square" />
             @else
-                <x-thumbnail :path="asset('assets/images/card-image.svg')" class="w-full sm:max-w-56 aspect-square" />
+                <x-thumbnail :alt="__('Sub Category Thumbnail')" :path="asset('assets/images/card-image.svg')" class="w-full sm:max-w-56 aspect-square" />
             @endif
         </div>
         <x-ui.form.label :title="__('Sub Category Name')" :for="__('name')">

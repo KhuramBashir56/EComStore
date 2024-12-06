@@ -9,7 +9,7 @@
     <div class="w-full grid sm:grid-cols-2">
         <div class="sm:col-span-2 relative">
             <x-ui.links.icon-link :link="__('default')" href="{{ asset(config('filesystems.storage') . $brand->logo) }}" target="_blank" :icon="__('open_in_new')" :title="__('Open Image in New Tab')" class="font-medium rounded-md absolute top-4 left-4" />
-            <x-thumbnail :url="asset(config('filesystems.storage') . $brand->logo)" class="w-full sm:max-w-56 aspect-square" />
+            <x-thumbnail :alt="$brand->name . __('Brand Logo')" :path="$brand->logo ? asset(config('filesystems.storage') . $brand->logo) : asset('assets/images/card-image.svg')" class="w-full sm:max-w-56 aspect-square" />
         </div>
         <div class="flex flex-wrap gap-4 mt-4 mb-2 sm:col-span-2">
             <x-ui.links.link :link="__('default')" wire:navigate href="{{ route('admin.products.brands.add_categories', ['brand' => $brand->ref_id]) }}" :title="__('Add Category')" class="rounded-md" />
